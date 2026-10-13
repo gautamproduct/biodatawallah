@@ -1,0 +1,158 @@
+/* ---------- A4 biodata page (794 × 1123) ---------- */
+.bd-page {
+  --fs: 15.5px;
+  position: relative;
+  width: 794px;
+  height: 1123px;
+  background: var(--paper);
+  color: var(--ink);
+  overflow: hidden;
+  font-size: var(--fs);
+  line-height: 1.45;
+  box-sizing: border-box;
+}
+.bd-page *, .wa-card * { box-sizing: border-box; }
+.bd-content { position: absolute; inset: 56px 60px 48px; overflow: hidden; display: flex; flex-direction: column; gap: calc(var(--fs) * 0.75); }
+
+.bd-font-sans { font-family: 'Mukta', 'Noto Sans Devanagari', system-ui, sans-serif; }
+.bd-font-serif { font-family: 'Tiro Devanagari Hindi', 'Noto Serif Devanagari', Georgia, serif; }
+.bd-font-classic { font-family: 'Tiro Devanagari Hindi', 'Noto Serif Devanagari', Georgia, serif; }
+.bd-font-classic .bd-name, .bd-font-classic .bd-heading { font-family: 'Playfair Display', 'Tiro Devanagari Hindi', Georgia, serif; }
+.lang-hi .bd-name, .lang-mr .bd-name { font-family: 'Tiro Devanagari Hindi', 'Noto Serif Devanagari', serif; }
+
+.bd-header { text-align: center; }
+.bd-topline { color: var(--accent); font-size: calc(var(--fs) * 1.05); letter-spacing: 0.02em; text-align: center; }
+.bd-heading { color: var(--accent2); text-transform: uppercase; letter-spacing: 0.22em; font-size: calc(var(--fs) * 0.8); font-weight: 600; margin-top: 4px; }
+.lang-hi .bd-heading, .lang-mr .bd-heading { letter-spacing: 0.04em; font-size: calc(var(--fs) * 1.05); }
+.bd-name { color: var(--accent); font-size: calc(var(--fs) * 2.1); line-height: 1.15; margin: 6px 0 0; font-weight: 700; }
+
+.bd-section { break-inside: avoid; }
+.bd-stitle { margin: 0 0 6px; font-size: calc(var(--fs) * 1.08); color: var(--accent); font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.bd-stitle::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--accent2), transparent); }
+
+.bd-rows { display: grid; row-gap: 3px; }
+.bd-row { display: grid; grid-template-columns: 38% 14px 1fr; align-items: baseline; }
+.bd-label { color: color-mix(in srgb, var(--ink) 70%, var(--paper)); }
+.bd-colon { color: var(--accent2); }
+.bd-value { font-weight: 600; white-space: pre-line; overflow-wrap: anywhere; }
+.bd-rows-grid { grid-template-columns: 1fr 1fr; column-gap: 28px; }
+.bd-rows-grid .bd-row { grid-template-columns: 46% 12px 1fr; }
+.bd-rows-stack .bd-row { display: block; margin-bottom: 4px; }
+.bd-rows-stack .bd-label { display: block; font-size: 0.82em; opacity: 0.85; }
+.bd-rows-stack .bd-colon { display: none; }
+.bd-text { margin: 0; text-align: justify; white-space: pre-line; }
+.bd-list { margin: 0; padding-left: 1.2em; }
+.bd-list li { margin: 2px 0; }
+
+.bd-headrow { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+.bd-headrow .bd-header { flex: 1; }
+.bd-photo { flex: none; overflow: hidden; background: var(--soft); position: relative; z-index: 3; }
+.bd-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bd-photo-rect { width: 170px; height: 215px; border: 3px solid var(--paper); outline: 2px solid var(--accent2); border-radius: 6px; }
+.bd-photo-circle { width: 170px; height: 170px; border-radius: 50%; border: 4px solid var(--accent2); margin: 0 auto; }
+.bd-photo-oval { width: 160px; height: 205px; border-radius: 50%; border: 3px solid var(--accent2); margin: 0 auto; }
+
+/* classic: ornamental double frame */
+.bd-frame { position: absolute; inset: 18px; border: 3px solid var(--accent); outline: 1px solid var(--accent2); outline-offset: -9px; border-radius: 4px; pointer-events: none; }
+.bd-frame::before, .bd-frame::after { content: '❖'; position: absolute; color: var(--accent2); font-size: 20px; line-height: 1; }
+.bd-frame::before { top: -12px; left: 50%; transform: translateX(-50%); background: var(--paper); padding: 0 8px; }
+.bd-frame::after { bottom: -12px; left: 50%; transform: translateX(-50%); background: var(--paper); padding: 0 8px; }
+.bd-classic .bd-headrow .bd-header { text-align: left; }
+.bd-classic .bd-topline { text-align: left; }
+
+/* royal: coloured header band */
+.bd-royal::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 190px; background: var(--accent); }
+.bd-royal::after { content: ''; position: absolute; left: 0; right: 0; top: 190px; height: 5px; background: var(--accent2); }
+.bd-royal .bd-content { inset: 34px 56px 46px; }
+.bd-royal .bd-header .bd-topline, .bd-royal .bd-header .bd-name { color: #fff; }
+.bd-royal .bd-header .bd-heading { color: var(--accent2); }
+.bd-royal .bd-photo-circle { margin-top: -6px; border-color: var(--paper); box-shadow: 0 0 0 3px var(--accent2); }
+.bd-royal .bd-stitle { justify-content: center; text-align: center; }
+.bd-royal .bd-stitle::before { content: ''; flex: 1; height: 1px; background: linear-gradient(270deg, var(--accent2), transparent); }
+
+/* simple */
+.bd-simple { border-top: 10px solid var(--accent); }
+.bd-simple .bd-header, .bd-simple .bd-topline { text-align: left; }
+.bd-simple .bd-stitle { background: var(--soft); padding: 4px 10px; border-left: 4px solid var(--accent); }
+.bd-simple .bd-stitle::after { display: none; }
+
+/* minimal */
+.bd-minimal .bd-header, .bd-minimal .bd-topline { text-align: left; }
+.bd-minimal .bd-name { font-weight: 600; letter-spacing: -0.01em; }
+.bd-minimal .bd-stitle { text-transform: uppercase; letter-spacing: 0.12em; font-size: calc(var(--fs) * 0.82); color: var(--ink); }
+.lang-hi.bd-minimal .bd-stitle, .lang-mr.bd-minimal .bd-stitle { letter-spacing: 0.02em; font-size: calc(var(--fs) * 1); }
+.bd-minimal .bd-stitle::after { background: var(--soft); height: 2px; }
+.bd-minimal .bd-photo-rect { outline: none; border: none; border-radius: 10px; }
+
+/* elegant */
+.bd-elegant .bd-content { inset: 60px 72px 50px; }
+.bd-elegant::before { content: ''; position: absolute; inset: 24px; border: 1px solid var(--accent2); }
+.bd-elegant::after { content: ''; position: absolute; inset: 30px; border: 1px solid var(--accent2); }
+.bd-elegant .bd-stitle { justify-content: center; font-style: italic; }
+.bd-elegant .bd-stitle::after { display: none; }
+.bd-elegant .bd-stitle span::before, .bd-elegant .bd-stitle span::after { content: ' ✦ '; color: var(--accent2); font-style: normal; }
+
+/* floral: soft corner blooms */
+.bd-corners { position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(circle at 0 0, color-mix(in srgb, var(--accent) 30%, transparent) 0 70px, transparent 71px),
+    radial-gradient(circle at 0 0, color-mix(in srgb, var(--accent2) 35%, transparent) 0 120px, transparent 121px),
+    radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--accent) 30%, transparent) 0 70px, transparent 71px),
+    radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--accent2) 35%, transparent) 0 120px, transparent 121px),
+    radial-gradient(circle at 100% 0, var(--soft) 0 90px, transparent 91px),
+    radial-gradient(circle at 0 100%, var(--soft) 0 90px, transparent 91px);
+}
+.bd-floral .bd-section { background: color-mix(in srgb, var(--soft) 55%, var(--paper)); border-radius: 14px; padding: 10px 16px; }
+.bd-floral .bd-stitle::after { display: none; }
+
+/* sidebar layouts */
+.bd-sidebar .bd-content, .bd-resumeSide .bd-content { inset: 0; }
+.bd-split { display: grid; grid-template-columns: 34% 1fr; height: 100%; }
+.bd-side { background: var(--accent); color: #fff; padding: 46px 26px; display: flex; flex-direction: column; gap: calc(var(--fs) * 0.9); text-align: center; overflow: hidden; }
+.bd-side .bd-name { color: #fff; font-size: calc(var(--fs) * 1.7); }
+.bd-side .bd-heading { color: var(--accent2); }
+.bd-side .bd-stitle { color: var(--accent2); justify-content: center; }
+.bd-side .bd-stitle::after { display: none; }
+.bd-side .bd-label { color: rgba(255, 255, 255, 0.75); }
+.bd-side .bd-list { text-align: left; }
+.bd-side .bd-photo-circle { border-color: var(--accent2); }
+.bd-main { padding: 46px 40px 40px 34px; display: flex; flex-direction: column; gap: calc(var(--fs) * 0.8); overflow: hidden; }
+.bd-main .bd-topline { text-align: left; }
+
+/* resume */
+.bd-resume .bd-header, .bd-resume .bd-topline { text-align: left; }
+.bd-resume .bd-name { color: var(--ink); }
+.bd-resume .bd-heading { color: var(--accent); }
+.bd-resume .bd-stitle { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: calc(var(--fs) * 0.92); border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
+.lang-hi.bd-resume .bd-stitle, .lang-mr.bd-resume .bd-stitle { letter-spacing: 0; font-size: calc(var(--fs) * 1.02); }
+.bd-resume .bd-stitle::after { display: none; }
+.bd-resume .bd-photo-rect { width: 130px; height: 160px; outline: 1px solid var(--soft); }
+
+.bd-credit { position: absolute; right: 22px; bottom: 8px; font-size: 9px; color: color-mix(in srgb, var(--ink) 35%, var(--paper)); font-family: 'Mukta', sans-serif; z-index: 2; }
+.bd-sidebar .bd-credit, .bd-resumeSide .bd-credit { right: 18px; }
+
+/* Preview watermark: sits above the text but below the photo, so the face stays clear. */
+.bd-watermark { position: absolute; inset: -20%; display: flex; flex-wrap: wrap; align-content: space-around; justify-content: space-around; transform: rotate(-28deg); pointer-events: none; z-index: 2; gap: 40px 60px; }
+.bd-watermark span { font: 700 26px 'Mukta', sans-serif; color: color-mix(in srgb, var(--accent) 16%, transparent); white-space: nowrap; letter-spacing: 0.08em; }
+
+/* ---------- WhatsApp card 1080 × 1350 ---------- */
+.wa-card { position: relative; width: 1080px; height: 1350px; background: var(--accent); overflow: hidden; color: var(--ink); }
+.wa-inner { position: absolute; inset: 44px; background: var(--paper); border-radius: 36px; border: 6px solid var(--accent2); display: flex; flex-direction: column; align-items: center; padding: 56px 70px; text-align: center; }
+.wa-topline { color: var(--accent); font-size: 34px; margin-bottom: 24px; }
+.wa-photo { width: 430px; height: 430px; border-radius: 50%; overflow: hidden; border: 8px solid var(--accent2); position: relative; z-index: 3; flex: none; }
+.wa-photo img { width: 100%; height: 100%; object-fit: cover; }
+.wa-monogram { width: 300px; height: 300px; border-radius: 50%; background: var(--soft); color: var(--accent); display: grid; place-items: center; font-size: 150px; font-weight: 700; flex: none; }
+.wa-name { color: var(--accent); font-size: 76px; line-height: 1.1; margin: 36px 0 24px; }
+.lang-hi .wa-name, .lang-mr .wa-name { font-family: 'Tiro Devanagari Hindi', serif; }
+.wa-facts { width: 100%; display: grid; gap: 14px; }
+.wa-fact { display: flex; justify-content: space-between; gap: 24px; font-size: 38px; border-bottom: 2px dashed var(--soft); padding-bottom: 10px; }
+.wa-fact span { color: color-mix(in srgb, var(--ink) 65%, var(--paper)); text-align: left; }
+.wa-fact strong { text-align: right; }
+.wa-foot { margin-top: auto; color: var(--accent2); font-size: 32px; font-weight: 600; }
+.wa-card .bd-watermark span { font-size: 40px; }
+
+/* Long biodatas: details in two columns. */
+.bd-dense .bd-rows-table { grid-template-columns: 1fr 1fr; column-gap: 26px; }
+.bd-dense .bd-rows-table .bd-row { grid-template-columns: 45% 10px 1fr; }
+.bd-dense .bd-main .bd-rows-table { grid-template-columns: 1fr; }
+.bd-dense .bd-main .bd-rows-table .bd-row { grid-template-columns: 38% 14px 1fr; }
