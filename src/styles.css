@@ -342,3 +342,18 @@ img { max-width: 100%; }
 .modal { background: #fff; border-radius: 28px; padding: 26px; max-width: 560px; width: 100%; max-height: 86vh; overflow: auto; display: grid; gap: 12px; box-shadow: var(--shadow-3); }
 .modal h2 { margin: 0; font-weight: 800; letter-spacing: -.03em; }
 .legal-list { margin: 0; padding-left: 20px; display: grid; gap: 8px; color: var(--ink-2); }
+
+/* Simple home: big pictures and buttons, few words */
+.pick { padding: 8px 0 0; text-align: center; }
+.pick-title { font-size: 22px; font-weight: 700; letter-spacing: -.02em; margin: 0 0 14px; }
+.pick-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; max-width: 720px; margin: 0 auto; }
+.pick-btn { display: grid; justify-items: center; gap: 10px; padding: 22px 8px; border-radius: 24px; border: 1px solid var(--line); background: #fff; box-shadow: var(--shadow-1); cursor: pointer; font-size: 19px; font-weight: 700; color: var(--ink); transition: transform .15s, box-shadow .2s, border-color .2s; }
+.pick-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); border-color: #ffc2d2; }
+.pick-icon { width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center; background: var(--brand-tint); color: var(--brand); }
+.steps.simple li { display: grid; justify-items: center; text-align: center; gap: 8px; padding: 24px 16px; }
+.steps.simple .step-no { width: 28px; height: 28px; border-radius: 9px; font-size: 14px; }
+.steps.simple p { margin: 0; font-size: 19px; font-weight: 700; }
+.step-ic { width: 56px; height: 56px; border-radius: 18px; background: var(--bg-2); color: var(--ink); display: grid; place-items: center; }
+@media (max-width: 859px) { .steps.simple { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; } .steps.simple li { padding: 16px 6px; } .steps.simple p { font-size: 15px; } .step-ic { width: 46px; height: 46px; } }
+.final-simple { text-align: center; padding: 72px 0 8px; display: grid; justify-items: center; gap: 10px; }
+.section-head h2.section-title { font-size: clamp(26px, 3.6vw, 40px); }
