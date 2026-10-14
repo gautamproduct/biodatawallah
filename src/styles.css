@@ -383,3 +383,38 @@ img { max-width: 100%; }
 .payassure { display: inline-flex; align-items: center; gap: 6px; margin: 12px 0 0; font-size: 13.5px; font-weight: 500; color: var(--muted); }
 .payassure .icon { color: var(--good); }
 .final-simple .payassure { justify-content: center; margin-top: 0; }
+.paytrust { padding: 10px 12px; gap: 8px; }
+.paytrust ul { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.paytrust li { font-size: 13.5px; font-weight: 600; }
+
+/* Colourful trust chips */
+.trustbar li, .trustbar-plain li { background: #fff; color: var(--ink); border: 1px solid var(--line); box-shadow: 0 2px 8px rgba(14, 14, 18, .05); font-weight: 600; padding: 4px 12px 4px 4px; gap: 7px; }
+.tb-ic { width: 24px; height: 24px; border-radius: 999px; display: grid; place-items: center; color: #fff; flex: none; }
+.trustbar li .icon { color: #fff; }
+.tb-0 .tb-ic { background: linear-gradient(135deg, #22c55e, #059669); }
+.tb-1 .tb-ic { background: linear-gradient(135deg, #60a5fa, #2563eb); }
+.tb-2 .tb-ic { background: linear-gradient(135deg, #f472b6, #e5336b); }
+.tb-3 .tb-ic { background: linear-gradient(135deg, #a78bfa, #7c3aed); }
+.tb-4 .tb-ic { background: linear-gradient(135deg, #fbbf24, #f97316); }
+.tb-5 .tb-ic { background: linear-gradient(135deg, #2dd4bf, #0d9488); }
+.tb-wa .tb-ic { background: linear-gradient(135deg, #4ade80, #16a34a); }
+
+/* Payment trust box */
+.paytrust { background: linear-gradient(135deg, #f0fdf4, #ecfeff); border: 1px solid #c8eed8; border-radius: 18px; padding: 12px 14px; display: grid; gap: 10px; }
+.pt-head { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; color: #065f46; }
+.pt-shield { width: 28px; height: 28px; border-radius: 9px; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, #22c55e, #059669); box-shadow: 0 4px 10px rgba(5, 150, 105, .3); }
+.pay-apps { display: flex; flex-wrap: wrap; gap: 6px; }
+.pay-apps span { border: 0; border-radius: 9px; padding: 4px 10px; font-size: 12.5px; font-weight: 800; color: #fff; letter-spacing: .01em; }
+.pay-apps .app-upi { background: linear-gradient(135deg, #f97316, #16a34a); }
+.pay-apps .app-gpay { background: #1a73e8; }
+.pay-apps .app-phonepe { background: #5f259f; }
+.pay-apps .app-paytm { background: #00baf2; }
+.paytrust ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 14px; }
+.paytrust li { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 600; color: #134d33; }
+.pt-ic { width: 22px; height: 22px; border-radius: 999px; display: grid; place-items: center; color: #fff; }
+.paytrust li .icon { color: #fff; margin: 0; }
+.pt-ic-0 { background: linear-gradient(135deg, #60a5fa, #2563eb); }
+.pt-ic-1 { background: linear-gradient(135deg, #fbbf24, #f97316); }
+.pt-ic-2 { background: linear-gradient(135deg, #f472b6, #e5336b); }
+.payassure { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px 5px 6px; color: var(--ink-2); font-weight: 600; box-shadow: 0 2px 8px rgba(14, 14, 18, .05); }
+.payassure .icon { color: #fff; background: linear-gradient(135deg, #22c55e, #059669); border-radius: 999px; padding: 4px; width: 22px; height: 22px; box-sizing: border-box; }

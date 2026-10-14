@@ -20,7 +20,7 @@ export function Gallery({ lang, onLang }: { lang: Lang; onLang: (l: Lang) => voi
     <div className="page">
       <TopBar><LangSwitch lang={lang} onLang={onLang} /></TopBar>
       <h1 className="section-title" style={{ marginTop: 24 }}>{TITLE[lang]}</h1>
-      <div style={{ marginBottom: 20 }}><TrustBar lang={lang} pick={[2, 0, 4]} tone="plain" /></div>
+      <div style={{ marginBottom: 20 }}><TrustBar lang={lang} pick={[2, 4]} tone="plain" /></div>
       <div className="gallery-grid">
         {docs.map(({ t, d }) => (
           <button key={t.id} className="gallery-item" onClick={() => go(`start/${d.purpose}`)}>

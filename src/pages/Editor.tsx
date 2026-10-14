@@ -57,7 +57,7 @@ export function Editor({ doc, onChange: rawChange }: { doc: Doc; onChange: (d: D
       <div className="editor-grid">
         <div className="editor-form">
           <h1 className="builder-title">{doc.heading}</h1>
-          <TrustBar lang={L} pick={[0, 5, 2]} tone="plain" />
+          <TrustBar lang={L} pick={[0, 2]} tone="plain" />
 
           <div className="quick-chips">
             <div className="chips chips-row">

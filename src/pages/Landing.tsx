@@ -139,11 +139,9 @@ export function Landing({ lang, onLang, onLegal }: { lang: Lang; onLang: (l: Lan
               <li key={n}><span className="step-ic"><Icon name={s.i} size={26} /></span><span className="step-no">{n + 1}</span><p>{s.t[L]}</p></li>
             ))}
           </ol>
-          <div className="center"><PayAssure lang={L} /></div>
         </section>
 
         <section className="final-simple">
-          <TrustBar lang={L} pick={[3, 4, 5]} tone="plain" />
           <button className="btn btn-brand btn-lg" onClick={() => go('start')}>{COPY.cta[L]} <Icon name="arrow" /></button>
           <p className="muted">{COPY.shop[L]}</p>
           <PayAssure lang={L} />
