@@ -47,6 +47,20 @@ const S = {
   boy: { en: 'Boy / Man', hi: 'लड़का / पुरुष', mr: 'मुलगा / पुरुष' },
   begin: { en: 'Start filling', hi: 'भरना शुरू करें', mr: 'भरायला सुरू करा' },
 
+  // Trust
+  getTitle: { en: 'What you get for ₹{price}', hi: '₹{price} में आपको क्या मिलता है', mr: '₹{price} मध्ये तुम्हाला काय मिळते' },
+  get1: { en: 'Print-ready A4 PDF', hi: 'प्रिंट के लिए तैयार A4 PDF', mr: 'प्रिंटसाठी तयार A4 PDF' },
+  get1s: { en: 'Sharp text in Hindi, Marathi or English', hi: 'हिंदी, मराठी या अंग्रेज़ी में साफ़ अक्षर', mr: 'मराठी, हिंदी किंवा इंग्रजीत स्पष्ट अक्षरे' },
+  get2: { en: 'WhatsApp photo', hi: 'WhatsApp फ़ोटो', mr: 'WhatsApp फोटो' },
+  get2s: { en: 'Sized to look clear inside a chat', hi: 'चैट में साफ़ दिखने वाला साइज़', mr: 'चॅटमध्ये स्पष्ट दिसणारा आकार' },
+  get3: { en: 'Version without photo', hi: 'बिना फ़ोटो वाला वर्ज़न', mr: 'फोटोशिवाय आवृत्ती' },
+  get3s: { en: 'For families you have not met yet', hi: 'उन परिवारों के लिए जिनसे अभी मिले नहीं', mr: 'अजून न भेटलेल्या कुटुंबांसाठी' },
+  get4: { en: '{days} days of free edits', hi: '{days} दिन तक मुफ़्त बदलाव', mr: '{days} दिवस मोफत बदल' },
+  get4s: { en: 'Change a phone number or photo any time', hi: 'नंबर या फ़ोटो कभी भी बदलें', mr: 'नंबर किंवा फोटो कधीही बदला' },
+  compare: { en: 'A DTP shop usually charges ₹100–300 and a trip. Here: ₹{price}, from home, in 5 minutes.', hi: 'DTP दुकान पर आमतौर पर ₹100–300 और आना-जाना। यहाँ: ₹{price}, घर बैठे, 5 मिनट में।', mr: 'DTP दुकानात साधारण ₹100–300 आणि ये-जा. इथे: ₹{price}, घरबसल्या, 5 मिनिटांत.' },
+  securePay: { en: 'Secure payment via Razorpay · UPI', hi: 'Razorpay से सुरक्षित भुगतान · UPI', mr: 'Razorpay द्वारे सुरक्षित पेमेंट · UPI' },
+  runBy: { en: 'Run by {name}, {city}', hi: '{name} द्वारा संचालित, {city}', mr: '{name} यांच्याद्वारे संचालित, {city}' },
+
   // Builder
   basicTitle: { en: 'Basic details', hi: 'मुख्य जानकारी', mr: 'मुख्य माहिती' },
   optionalHead: { en: 'Add more if you like (optional)', hi: 'चाहें तो और जोड़ें (वैकल्पिक)', mr: 'हवे असल्यास आणखी जोडा (ऐच्छिक)' },

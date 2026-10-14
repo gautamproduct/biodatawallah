@@ -255,3 +255,22 @@ img { max-width: 100%; }
 @media (min-width: 940px) { .hero { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); } }
 :lang(hi) .eyebrow, :lang(mr) .eyebrow, :lang(hi) .optional-head, :lang(mr) .optional-head { letter-spacing: 0; text-transform: none; font-size: 14px; }
 @media (max-width: 520px) { .hero h1 { font-size: 34px; } .hero-sub { font-size: 17.5px; } .hero-ctas .btn { width: 100%; } }
+.gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; padding-bottom: 60px; }
+@media (min-width: 760px) { .gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.gallery-item { border: 0; background: none; padding: 0; cursor: pointer; display: grid; gap: 10px; text-align: center; font-weight: 600; color: var(--ink-2); min-width: 0; }
+
+/* What you get */
+.value { display: grid; gap: 28px; align-items: center; }
+@media (min-width: 860px) { .value { grid-template-columns: 1fr 1fr; } }
+.value-compare { color: var(--ink-2); font-size: 18px; margin: -8px 0 22px; max-width: 30em; }
+.get-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.get-list li { display: flex; gap: 14px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; }
+.get-list strong { display: block; font-size: 17px; }
+.get-list small { display: block; color: var(--muted); font-size: 14.5px; }
+.get-icon { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: var(--brand-tint); color: var(--brand); flex: none; }
+.get-list.compact { gap: 6px; }
+.get-list.compact li { border: 0; padding: 4px 0; background: transparent; }
+.get-list.compact strong { font-size: 15.5px; font-weight: 600; }
+.get-list.compact .get-icon { width: 32px; height: 32px; border-radius: 9px; }
+.section-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 24px; }
+.section-head .section-title { margin: 0; }

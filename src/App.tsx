@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { LegalModal } from './components/Legal';
 import { go } from './nav';
 import { Editor } from './pages/Editor';
+import { Gallery } from './pages/Gallery';
 import { Landing } from './pages/Landing';
 import { Preview } from './pages/Preview';
 import { newDoc } from './presets';
@@ -72,6 +73,8 @@ export default function App() {
     page = <Preview doc={doc} onChange={update} onLegal={setLegal} />;
   } else if (route.page === 'edit' || route.page === 'preview' || route.page === 'start') {
     page = <div className="loading" />;
+  } else if (route.page === 'gallery') {
+    page = <Gallery lang={uiLang} onLang={changeLang} />;
   } else {
     page = <Landing lang={uiLang} onLang={changeLang} onLegal={setLegal} />;
   }

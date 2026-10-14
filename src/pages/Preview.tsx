@@ -2,6 +2,7 @@ import { Icon } from '../components/Icon';
 import { useEffect, useRef, useState } from 'react';
 import { TopBar } from '../components/Header';
 import { helpLink } from '../components/Legal';
+import { WhatYouGet } from '../components/WhatYouGet';
 import { Scaled } from '../components/Scaled';
 import { CONFIG } from '../config';
 import { nodeToPdfBlob, nodeToPngBlob, safeFileName, saveBlob, shareFiles } from '../export';
@@ -27,7 +28,6 @@ export function Preview({ doc, onLegal }: { doc: Doc; onChange: (d: Doc) => void
   const wmCardRef = useRef<HTMLDivElement>(null);
   const name = personName(doc);
   const base = safeFileName(name);
-  const vars = { price: CONFIG.price, days: CONFIG.editDays };
   const help = helpLink(`Namaste, I need help with my biodata (${name || 'no name'}).`);
 
   async function run(job: () => Promise<void>) {
@@ -116,10 +116,9 @@ export function Preview({ doc, onLegal }: { doc: Doc; onChange: (d: Doc) => void
               <div className="pay-card">
                 <div className="price-line"><strong>₹{CONFIG.price}</strong><span>{tr(L, 'priceSub')}</span></div>
                 <button className="btn btn-primary btn-lg btn-block" disabled={busy} onClick={startPayment}><Icon name="download" />{tr(L, 'downloadCta')}</button>
+                <WhatYouGet lang={L} compact />
                 <ul className="trust">
-                  <li><Icon name="check" size={16} />{tr(L, 'payTrust1', vars)}</li>
-                  <li><Icon name="check" size={16} />{tr(L, 'payTrust2')}</li>
-                  <li><Icon name="check" size={16} />{tr(L, 'payTrust3', vars)}</li>
+                  <li><Icon name="lock" size={16} />{tr(L, 'securePay')}</li>
                   <li><Icon name="check" size={16} />{tr(L, 'payTrust4')}</li>
                 </ul>
                 <p className="hint">{tr(L, 'consent')}</p>

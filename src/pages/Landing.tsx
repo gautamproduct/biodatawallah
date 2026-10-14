@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { LangSwitch, TopBar } from '../components/Header';
 import { Icon } from '../components/Icon';
 import { helpLink } from '../components/Legal';
+import { BusinessLine, WhatYouGet } from '../components/WhatYouGet';
 import { Scaled } from '../components/Scaled';
 import { CONFIG } from '../config';
 import { go } from '../nav';
@@ -28,12 +29,12 @@ const FINAL: Record<Lang, string> = { en: 'Ready in 5 minutes. Free until you do
 export function Landing({ lang, onLang, onLegal }: { lang: Lang; onLang: (l: Lang) => void; onLegal: (k: 'privacy' | 'terms') => void }) {
   const [docs, setDocs] = useState(listDocs);
   const vars = { price: CONFIG.price, days: CONFIG.editDays };
-  const hero = useMemo(() => sampleDoc(lang === 'en' ? 'hi' : lang, lang === 'mr' ? 'shahi-neela' : 'shubh-laal'), [lang]);
+  const hero = useMemo(() => sampleDoc(lang === 'en' ? 'hi' : lang, 'mehrab-rose'), [lang]);
   const samples = useMemo(() => [
-    sampleDoc('hi', 'shubh-laal'),
-    sampleDoc('mr', 'shahi-neela'),
-    sampleDoc('en', 'chandni'),
-    sampleDoc('en', 'resume-blue', 'job'),
+    sampleDoc('mr', 'mehrab-sage', 'marriage', 1),
+    sampleDoc('en', 'patrika-emerald', 'marriage', 3),
+    sampleDoc('hi', 'rajsi-maroon', 'marriage', 4),
+    sampleDoc('en', 'career-ocean', 'job', 1),
   ], []);
   const help = helpLink('Namaste, I need help with my biodata.');
   const purposes: { p: Purpose; icon: string; title: 'forMarriage' | 'forJob' | 'forGeneral'; sub: 'forMarriageSub' | 'forJobSub' | 'forGeneralSub' }[] = [
@@ -94,7 +95,10 @@ export function Landing({ lang, onLang, onLegal }: { lang: Lang; onLang: (l: Lan
         </section>
 
         <section className="section" id="designs">
-          <h2 className="section-title">{tr(lang, 'samples')}</h2>
+          <div className="section-head">
+            <h2 className="section-title">{tr(lang, 'samples')}</h2>
+            <button className="btn btn-quiet btn-small" onClick={() => go('gallery')}>{tr(lang, 'allDesigns')} <Icon name="arrow" size={16} /></button>
+          </div>
           <div className="sample-grid">
             {samples.map((d) => (
               <button key={d.id} className="sample" onClick={() => go(`start/${d.purpose}`)} aria-label={d.heading}>
@@ -102,6 +106,15 @@ export function Landing({ lang, onLang, onLegal }: { lang: Lang; onLang: (l: Lan
               </button>
             ))}
           </div>
+        </section>
+
+        <section className="section value">
+          <div>
+            <h2 className="section-title">{tr(lang, 'getTitle', vars)}</h2>
+            <p className="value-compare">{tr(lang, 'compare', vars)}</p>
+            <button className="btn btn-primary btn-lg" onClick={() => go('start')}>{tr(lang, 'ctaStart')} <Icon name="arrow" /></button>
+          </div>
+          <WhatYouGet lang={lang} />
         </section>
 
         <section className="section">
@@ -168,6 +181,7 @@ export function Landing({ lang, onLang, onLegal }: { lang: Lang; onLang: (l: Lan
             <button className="linkish" onClick={() => onLegal('terms')}>{tr(lang, 'terms')}</button>
             <button className="linkish" onClick={() => { if (confirm(tr(lang, 'deleteAllQ'))) { deleteEverything(); setDocs([]); alert(tr(lang, 'deleted')); } }}>{tr(lang, 'deleteAll')}</button>
           </nav>
+          <BusinessLine lang={lang} />
           <p className="muted small">© {new Date().getFullYear()} Biodata Wallah</p>
         </footer>
       </div>

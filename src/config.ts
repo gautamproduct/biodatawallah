@@ -8,6 +8,10 @@ export const CONFIG = {
   helplineWhatsApp: '',
   /** Days a paid biodata can be edited and downloaded again. */
   editDays: 90,
+  /** Shown in the footer so families know a real person runs this. Leave empty to hide. */
+  ownerName: '',
+  city: '',
+  supportEmail: '',
   siteName: 'Biodata Wallah',
   siteUrl: 'https://biodatawallah.com',
 };
