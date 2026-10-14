@@ -15,48 +15,68 @@ function samplePhoto(kind: 'girl' | 'boy', n: number): string | null {
 }
 
 interface Look { bg1: string; bg2: string; skin: string; hair: string; outfit: string; trim: string }
+type Style = 'long' | 'bun' | 'dupatta' | 'quiff' | 'beard';
+type Wear = 'saree' | 'suit' | 'nehru' | 'blazer' | 'shirt';
 
-/** A flat illustrated portrait (girl or boy) as an SVG data URL. */
-function portrait(g: Gender, l: Look): string {
-  const face = `<ellipse cx="200" cy="212" rx="62" ry="76" fill="${l.skin}"/>`;
-  const features =
-    `<path d="M170 205q10-6 20 0M210 205q10-6 20 0" stroke="#3a2620" stroke-width="4" fill="none" stroke-linecap="round"/>` +
-    `<path d="M164 188q14-8 28-2M208 186q14-6 28 2" stroke="${l.hair}" stroke-width="5" fill="none" stroke-linecap="round"/>` +
-    `<path d="M186 250q14 10 28 0" stroke="#8a3b3b" stroke-width="4" fill="none" stroke-linecap="round"/>` +
-    `<path d="M200 214v18" stroke="#00000022" stroke-width="3" stroke-linecap="round"/>`;
-  const neck = `<path d="M176 270h48v40h-48z" fill="${l.skin}"/><path d="M176 286q24 14 48 0v-16h-48z" fill="#00000018"/>`;
-  const female =
-    `<path d="M120 230c-6-98 46-140 80-140s92 30 82 140c-4 50 6 96 20 128H98c18-34 26-80 22-128z" fill="${l.hair}"/>` +
-    neck +
-    `<path d="M60 500c6-110 60-176 140-176s134 66 140 176z" fill="${l.outfit}"/>` +
-    `<path d="M108 366c46 54 136 78 236 36l4 22c-92 42-196 26-252-30z" fill="${l.trim}" opacity=".9"/>` +
-    face + features +
-    `<path d="M138 196c4-66 40-92 62-92s70 18 66 92c-14-34-36-52-64-56-26 8-48 28-64 56z" fill="${l.hair}"/>` +
-    `<circle cx="200" cy="176" r="5" fill="#b3263a"/>` +
-    `<circle cx="138" cy="246" r="7" fill="${l.trim}"/><circle cx="262" cy="246" r="7" fill="${l.trim}"/>`;
-  const male =
-    neck +
-    `<path d="M56 500c6-112 62-178 144-178s138 66 144 178z" fill="${l.outfit}"/>` +
-    `<path d="M168 322l32 44 32-44 14 14-46 70-46-70z" fill="#f6f1ea"/>` +
-    `<path d="M196 368h8l6 132h-20z" fill="${l.trim}" opacity=".85"/>` +
-    face + features +
-    `<path d="M136 200c-4-62 30-98 66-98 40 0 70 30 62 96-8-26-22-42-46-48-30 4-56 18-82 50z" fill="${l.hair}"/>` +
-    `<ellipse cx="138" cy="220" rx="8" ry="14" fill="${l.skin}"/><ellipse cx="262" cy="220" rx="8" ry="14" fill="${l.skin}"/>`;
+/** A modern, faceless editorial portrait (SVG) — clean shapes and soft gradients, no cartoon features. */
+function portrait(g: Gender, l: Look, style: Style = g === 'female' ? 'long' : 'quiff', wear: Wear = g === 'female' ? 'saree' : 'nehru', bindi = false): string {
+  const defs =
+    `<defs>` +
+    `<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${l.bg1}"/><stop offset="1" stop-color="${l.bg2}"/></linearGradient>` +
+    `<linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${l.skin}" stop-opacity=".88"/><stop offset="1" stop-color="${l.skin}"/></linearGradient>` +
+    `<linearGradient id="hr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${l.hair}" stop-opacity=".82"/><stop offset="1" stop-color="${l.hair}"/></linearGradient>` +
+    `<linearGradient id="ot" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${l.outfit}" stop-opacity=".85"/><stop offset="1" stop-color="${l.outfit}"/></linearGradient>` +
+    `<linearGradient id="tr" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${l.trim}"/><stop offset="1" stop-color="${l.trim}" stop-opacity=".7"/></linearGradient>` +
+    `<pattern id="dots" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="#fff" fill-opacity=".35"/></pattern>` +
+    `</defs>`;
+  const bg = `<rect width="400" height="500" fill="url(#bg)"/><circle cx="200" cy="250" r="170" fill="#fff" fill-opacity=".28"/><circle cx="318" cy="96" r="40" fill="#fff" fill-opacity=".22"/>`;
+  const shoulders = `<path d="M62 500 C70 408 126 350 200 344 C274 350 330 408 338 500Z" fill="url(#ot)"/>`;
+  const neck = `<path d="M178 262 h44 v74 q-22 16 -44 0z" fill="url(#sk)"/><path d="M178 278 q22 20 44 0 v-14 h-44z" fill="#000" fill-opacity=".1"/>`;
+  let wearSvg = '';
+  if (wear === 'saree') wearSvg = shoulders + `<path d="M166 344 Q200 386 234 344 L224 330 L176 330Z" fill="url(#sk)"/><path d="M118 368 C176 418 262 446 338 462 L338 500 L250 500 C196 468 146 428 100 388Z" fill="url(#tr)"/><path d="M118 368 C176 418 262 446 338 462 L338 500 L250 500 C196 468 146 428 100 388Z" fill="url(#dots)"/>`;
+  if (wear === 'suit') wearSvg = shoulders + `<path d="M170 344 Q200 380 230 344 L222 330 L178 330Z" fill="url(#sk)"/><path d="M200 380 v120" stroke="url(#tr)" stroke-width="6"/>`;
+  if (wear === 'nehru') wearSvg = shoulders + `<path d="M172 336 h56 l-6 22 h-44z" fill="url(#tr)"/><path d="M200 360 v140" stroke="#000" stroke-opacity=".12" stroke-width="2"/>` + [384, 414, 444, 474].map((y) => `<circle cx="200" cy="${y}" r="4" fill="url(#tr)"/>`).join('');
+  if (wear === 'blazer') wearSvg = shoulders + `<path d="M170 340 L200 400 L230 340 L240 352 L200 500 L160 352Z" fill="#f4f1ec"/><path d="M194 372 h12 l6 128 h-24z" fill="url(#tr)"/><path d="M150 360 L200 500 L176 500 L130 380Z M250 360 L200 500 L224 500 L270 380Z" fill="#000" fill-opacity=".18"/>`;
+  if (wear === 'shirt') wearSvg = shoulders + `<path d="M168 338 L200 372 L232 338 L244 352 L214 386 L200 372 L186 386 L156 352Z" fill="#fff" fill-opacity=".92"/><path d="M200 386 v114" stroke="#000" stroke-opacity=".12" stroke-width="2"/>`;
+  const face = `<ellipse cx="200" cy="212" rx="${g === 'female' ? 55 : 57}" ry="${g === 'female' ? 69 : 68}" fill="url(#sk)"/><ellipse cx="200" cy="240" rx="40" ry="26" fill="#000" fill-opacity=".03"/>`;
+  let back = '';
+  let front = '';
+  if (style === 'long') {
+    back = `<path d="M118 250 C110 146 150 98 200 98 C250 98 292 146 284 250 C280 322 290 372 302 404 L98 404 C110 372 122 322 118 250Z" fill="url(#hr)"/>`;
+    front = `<path d="M142 210 C138 140 172 110 206 110 C248 112 268 150 262 214 C250 172 228 150 196 146 C172 152 152 176 142 210Z" fill="url(#hr)"/><path d="M146 196 C132 246 134 296 150 336 L130 336 C118 282 124 222 146 196Z" fill="url(#hr)"/><path d="M226 128 C246 140 258 160 260 186" stroke="#fff" stroke-opacity=".22" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+  }
+  if (style === 'bun') {
+    back = `<circle cx="200" cy="106" r="38" fill="url(#hr)"/><path d="M140 214 C134 150 166 122 200 122 C234 122 266 150 260 214 Z" fill="url(#hr)"/>`;
+    front = `<path d="M142 206 C142 150 170 128 202 128 C240 130 260 158 258 206 C246 176 226 158 198 154 C172 158 154 178 142 206Z" fill="url(#hr)"/>`;
+  }
+  if (style === 'dupatta') {
+    back = `<path d="M118 262 C104 158 148 92 200 92 C252 92 296 158 282 262 C292 332 304 382 324 424 L76 424 C96 382 108 332 118 262Z" fill="url(#ot)" fill-opacity=".72"/><path d="M118 262 C104 158 148 92 200 92 C252 92 296 158 282 262 C292 332 304 382 324 424 L76 424 C96 382 108 332 118 262Z" fill="url(#dots)"/>`;
+    front = `<path d="M146 176 C156 140 178 126 200 126 C222 126 244 140 254 176 C236 158 218 152 200 152 C182 152 164 158 146 176Z" fill="url(#hr)"/><path d="M134 232 C130 176 160 120 200 118 C240 120 270 176 266 232" stroke="url(#ot)" stroke-width="12" fill="none" stroke-linecap="round"/><path d="M128 250 C124 186 158 126 200 124 C242 126 276 186 272 250" stroke="url(#tr)" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+  }
+  if (style === 'quiff' || style === 'beard') {
+    front = `<path d="M144 204 C136 140 170 104 212 106 C254 108 270 148 258 204 C252 176 238 160 220 154 C196 150 166 160 148 196Z" fill="url(#hr)"/><path d="M168 122 C190 104 236 102 254 128" stroke="#fff" stroke-opacity=".2" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+    if (style === 'beard') front += `<path d="M146 218 C148 268 174 292 200 294 C226 292 252 268 254 218 C248 252 228 270 200 272 C172 270 152 252 146 218Z" fill="url(#hr)" fill-opacity=".9"/>`;
+  }
+  const ears = g === 'male' || style === 'bun'
+    ? `<ellipse cx="${g === 'male' ? 143 : 145}" cy="222" rx="8" ry="13" fill="url(#sk)"/><ellipse cx="${g === 'male' ? 257 : 255}" cy="222" rx="8" ry="13" fill="url(#sk)"/>`
+    : '';
+  const jewels = g === 'female' && style !== 'dupatta'
+    ? `<circle cx="146" cy="240" r="4" fill="${l.trim}"/><circle cx="146" cy="254" r="6.5" fill="${l.trim}"/><circle cx="254" cy="240" r="4" fill="${l.trim}"/><circle cx="254" cy="254" r="6.5" fill="${l.trim}"/>`
+    : '';
+  const dot = bindi ? `<circle cx="200" cy="180" r="4.5" fill="#b3263a"/>` : '';
   return 'data:image/svg+xml;utf8,' + encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${l.bg1}"/><stop offset="1" stop-color="${l.bg2}"/></linearGradient></defs>` +
-    `<rect width="400" height="500" fill="url(#g)"/><circle cx="330" cy="80" r="130" fill="#fff" opacity=".14"/>` +
-    (g === 'female' ? female : male) + `</svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">${defs}${bg}<g transform="translate(200 520) scale(1.18) translate(-200 -500)">${back}${neck}${wearSvg}${ears}${face}${front}${jewels}${dot}</g></svg>`,
   );
 }
 
 interface Persona {
-  lang: Lang; community: Community; gender: Gender; look: Look; n: number;
+  lang: Lang; community: Community; gender: Gender; look: Look; n: number; style: Style; wear: Wear; bindi?: boolean;
   values: Record<string, string>; traits: string[]; hobbies: string;
 }
 
 const PERSONAS: Persona[] = [
   {
-    lang: 'hi', community: 'hindu', gender: 'female', n: 1,
+    lang: 'hi', community: 'hindu', gender: 'female', n: 1, style: 'long', wear: 'saree', bindi: true,
     look: { bg1: '#f1dfd3', bg2: '#d9b3a3', skin: '#c98f6e', hair: '#2a1b17', outfit: '#9c3d54', trim: '#d4a64a' },
     values: {
       fullName: 'प्रिया रमेश शर्मा', dob: '1999-03-12', birthTime: '06:45', birthPlace: 'इंदौर', height: "5'4", bloodGroup: 'B+', diet: 'veg',
@@ -68,7 +88,7 @@ const PERSONAS: Persona[] = [
     traits: ['cultured', 'understanding', 'familyoriented', 'cheerful'], hobbies: 'संगीत और खाना बनाने',
   },
   {
-    lang: 'mr', community: 'hindu', gender: 'male', n: 1,
+    lang: 'mr', community: 'hindu', gender: 'male', n: 1, style: 'quiff', wear: 'nehru',
     look: { bg1: '#dfe7e0', bg2: '#a9bfae', skin: '#b97c5a', hair: '#1f1714', outfit: '#3f5a46', trim: '#c9a35a' },
     values: {
       fullName: 'रोहन सुनील देशमुख', dob: '1996-08-21', birthTime: '10:20', birthPlace: 'पुणे', height: "5'10", bloodGroup: 'O+', diet: 'veg',
@@ -81,7 +101,7 @@ const PERSONAS: Persona[] = [
     traits: ['hardworking', 'understanding', 'familyoriented', 'honest'], hobbies: 'क्रिकेट आणि प्रवास',
   },
   {
-    lang: 'en', community: 'jain', gender: 'male', n: 2,
+    lang: 'en', community: 'jain', gender: 'male', n: 2, style: 'quiff', wear: 'blazer',
     look: { bg1: '#e6e2f0', bg2: '#b6aecb', skin: '#c48b68', hair: '#221815', outfit: '#1f2e4d', trim: '#c2a160' },
     values: {
       fullName: 'Rahul Anil Mehta', dob: '1996-11-02', birthTime: '18:10', birthPlace: 'Ahmedabad', height: "5'10", diet: 'jainfood',
@@ -93,7 +113,7 @@ const PERSONAS: Persona[] = [
     traits: ['cheerful', 'familyoriented', 'ambitious', 'honest'], hobbies: 'cricket and travelling',
   },
   {
-    lang: 'en', community: 'muslim', gender: 'female', n: 2,
+    lang: 'en', community: 'muslim', gender: 'female', n: 2, style: 'dupatta', wear: 'suit',
     look: { bg1: '#e3eee8', bg2: '#a8c7b8', skin: '#c99272', hair: '#24170f', outfit: '#145a45', trim: '#e3c27a' },
     values: {
       fullName: 'Sana Imran Qureshi', dob: '1998-06-05', birthPlace: 'Lucknow', height: "5'3", maritalStatus: 'never', religion: 'Islam',
@@ -104,7 +124,7 @@ const PERSONAS: Persona[] = [
     traits: ['understanding', 'independent', 'caring', 'modern'], hobbies: 'reading and calligraphy',
   },
   {
-    lang: 'hi', community: 'hindu', gender: 'male', n: 3,
+    lang: 'hi', community: 'hindu', gender: 'male', n: 3, style: 'beard', wear: 'nehru',
     look: { bg1: '#f0e3d2', bg2: '#d5b48c', skin: '#b47a58', hair: '#1c1411', outfit: '#7a1f2e', trim: '#c2a160' },
     values: {
       fullName: 'अंकित विजय वर्मा', dob: '1995-01-18', birthTime: '04:30', birthPlace: 'जयपुर', height: "5'9", bloodGroup: 'A+', diet: 'veg',
@@ -116,7 +136,7 @@ const PERSONAS: Persona[] = [
     traits: ['cultured', 'hardworking', 'religious', 'caring'], hobbies: 'योग और पढ़ने',
   },
   {
-    lang: 'mr', community: 'hindu', gender: 'female', n: 3,
+    lang: 'mr', community: 'hindu', gender: 'female', n: 3, style: 'bun', wear: 'saree', bindi: true,
     look: { bg1: '#f6e3e6', bg2: '#dcaab4', skin: '#cf9877', hair: '#2b1c18', outfit: '#5b2c5e', trim: '#d8b06a' },
     values: {
       fullName: 'स्नेहा विजय कुलकर्णी', dob: '1998-08-21', birthTime: '10:20', birthPlace: 'नाशिक', height: "5'3", bloodGroup: 'O+', diet: 'veg',
@@ -131,7 +151,7 @@ const PERSONAS: Persona[] = [
 
 const JOB_PERSONAS = [
   {
-    gender: 'male' as Gender, n: 4,
+    gender: 'male' as Gender, n: 4, style: 'quiff' as Style, wear: 'shirt' as Wear,
     look: { bg1: '#dfe7f0', bg2: '#a7bbd0', skin: '#b87d5b', hair: '#1d1512', outfit: '#24577f', trim: '#f2f2f2' },
     v: { fullName: 'Amit Kumar Verma', fatherName: 'Shri Suresh Verma', dob: '2001-05-15', maritalStatus: 'never', languages: 'Hindi, English', phone: '98XXXXXX31', email: 'amit.verma@email.com', address: 'Lucknow, Uttar Pradesh' },
     body: {
@@ -141,7 +161,7 @@ const JOB_PERSONAS = [
     },
   },
   {
-    gender: 'female' as Gender, n: 4,
+    gender: 'female' as Gender, n: 4, style: 'bun' as Style, wear: 'blazer' as Wear,
     look: { bg1: '#ece6f3', bg2: '#bfb1d4', skin: '#c99272', hair: '#24170f', outfit: '#2a2d32', trim: '#ffffff' },
     v: { fullName: 'Neha Ramesh Patil', fatherName: 'Shri Ramesh Patil', dob: '2000-09-09', maritalStatus: 'never', languages: 'Marathi, Hindi, English', phone: '97XXXXXX84', email: 'neha.patil@email.com', address: 'Nagpur, Maharashtra' },
     body: {
@@ -168,7 +188,7 @@ export function sampleDoc(lang: Lang, template: string, purpose: Purpose = 'marr
     for (const s of d.sections) if (s.key && s.key in p.body) s.body = p.body[s.key as keyof typeof p.body];
     const obj = d.sections.find((s) => s.key === 'objective'); if (obj) obj.body = writeObjective(d);
     const dec = d.sections.find((s) => s.key === 'declaration'); if (dec) dec.body = writeDeclaration(d);
-    d.photo = samplePhoto(p.gender === 'female' ? 'girl' : 'boy', p.n) ?? portrait(p.gender, p.look);
+    d.photo = samplePhoto(p.gender === 'female' ? 'girl' : 'boy', p.n) ?? portrait(p.gender, p.look, p.style, p.wear);
     return d;
   }
   const pool = pick === undefined ? PERSONAS.filter((x) => x.lang === lang) : PERSONAS;
@@ -181,6 +201,6 @@ export function sampleDoc(lang: Lang, template: string, purpose: Purpose = 'marr
   d.hobbies = p.hobbies;
   const about = d.sections.find((s) => s.key === 'about'); if (about) about.body = writeAbout(d);
   const exp = d.sections.find((s) => s.key === 'expectations'); if (exp) exp.body = writeExpectations(d);
-  d.photo = samplePhoto(p.gender === 'female' ? 'girl' : 'boy', p.n) ?? portrait(p.gender, p.look);
+  d.photo = samplePhoto(p.gender === 'female' ? 'girl' : 'boy', p.n) ?? portrait(p.gender, p.look, p.style, p.wear, p.bindi);
   return d;
 }
