@@ -5,9 +5,9 @@ import type { Community, Doc, Gender, Lang, Purpose } from './types';
 import { writeAbout, writeDeclaration, writeExpectations, writeObjective } from './writer';
 
 // Real-looking AI portraits dropped into src/assets/samples (girl-1.jpg … boy-4.jpg) replace the illustrations.
-const PHOTO_FILES = import.meta.glob('./assets/samples/*.{jpg,jpeg,png,webp}', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
+const PHOTO_FILES = import.meta.glob('./assets/samples/*.{jpg,jpeg,png,webp,svg}', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
 function samplePhoto(kind: 'girl' | 'boy', n: number): string | null {
-  for (const ext of ['jpg', 'jpeg', 'png', 'webp']) {
+  for (const ext of ['jpg', 'jpeg', 'png', 'webp', 'svg']) {
     const url = PHOTO_FILES[`./assets/samples/${kind}-${n}.${ext}`];
     if (url) return url;
   }
