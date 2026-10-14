@@ -156,3 +156,6 @@
 .bd-dense .bd-rows-table .bd-row { grid-template-columns: 45% 10px 1fr; }
 .bd-dense .bd-main .bd-rows-table { grid-template-columns: 1fr; }
 .bd-dense .bd-main .bd-rows-table .bd-row { grid-template-columns: 38% 14px 1fr; }
+/* Spread sections a little when there is room. */
+.bd-content { justify-content: flex-start; }
+.bd-section + .bd-section { margin-top: calc(var(--fs) * 0.15); }

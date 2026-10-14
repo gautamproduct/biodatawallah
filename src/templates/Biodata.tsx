@@ -107,6 +107,14 @@ export const Biodata = forwardRef<HTMLDivElement, Props>(function Biodata({ doc:
     if (!fits()) {
       page.classList.add('bd-dense');
       shrinkTo(9.5);
+    } else {
+      // Short biodatas: grow the text so the page looks full, not empty.
+      let size = parseFloat(page.style.getPropertyValue('--fs'));
+      while (fits() && size < 21) {
+        size += 0.5;
+        page.style.setProperty('--fs', `${size}px`);
+      }
+      if (!fits()) page.style.setProperty('--fs', `${size - 0.5}px`);
     }
   });
 

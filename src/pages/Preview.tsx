@@ -1,3 +1,4 @@
+import { Icon } from '../components/Icon';
 import { useEffect, useRef, useState } from 'react';
 import { TopBar } from '../components/Header';
 import { helpLink } from '../components/Legal';
@@ -89,14 +90,14 @@ export function Preview({ doc, onLegal }: { doc: Doc; onChange: (d: Doc) => void
   return (
     <div className="page preview">
       <TopBar>
-        <button className="btn btn-small btn-ghost" onClick={() => go(`edit/${doc.id}/0`)}>{tr(L, 'edit')}</button>
+        <button className="btn btn-small btn-ghost" onClick={() => go(`edit/${doc.id}`)}><Icon name="edit" size={18} />{tr(L, 'edit')}</button>
       </TopBar>
 
       <div className="preview-grid">
         <div className="preview-doc">
           <div className="tabs" role="tablist">
-            <button role="tab" aria-selected={tab === 'page'} className={tab === 'page' ? 'on' : ''} onClick={() => setTab('page')}>📄 {tr(L, 'tabPage')}</button>
-            <button role="tab" aria-selected={tab === 'card'} className={tab === 'card' ? 'on' : ''} onClick={() => setTab('card')}>💬 {tr(L, 'tabCard')}</button>
+            <button role="tab" aria-selected={tab === 'page'} className={tab === 'page' ? 'on' : ''} onClick={() => setTab('page')}><Icon name="file" size={18} />{tr(L, 'tabPage')}</button>
+            <button role="tab" aria-selected={tab === 'card'} className={tab === 'card' ? 'on' : ''} onClick={() => setTab('card')}><Icon name="chat" size={18} />{tr(L, 'tabCard')}</button>
           </div>
           <div className="paper-shadow">
             {tab === 'page'
@@ -110,33 +111,35 @@ export function Preview({ doc, onLegal }: { doc: Doc; onChange: (d: Doc) => void
             <>
               <h1>{tr(L, 'readyTitle')}</h1>
               <p className="muted">{tr(L, 'readySub')}</p>
-              <button className="btn btn-ghost btn-block" onClick={() => go(`edit/${doc.id}/0`)}>{tr(L, 'edit')}</button>
-              <button className="btn btn-whatsapp btn-block" disabled={busy} onClick={sendToFamily}>💬 {tr(L, 'sendFamily')}</button>
+              <button className="btn btn-ghost btn-block" onClick={() => go(`edit/${doc.id}`)}><Icon name="edit" size={18} />{tr(L, 'edit')}</button>
+              <button className="btn btn-whatsapp btn-block" disabled={busy} onClick={sendToFamily}><Icon name="chat" />{tr(L, 'sendFamily')}</button>
               <div className="pay-card">
-                <button className="btn btn-primary btn-lg btn-block" disabled={busy} onClick={startPayment}>⬇ {tr(L, 'downloadPay', vars)}</button>
+                <div className="price-line"><strong>₹{CONFIG.price}</strong><span>{tr(L, 'priceSub')}</span></div>
+                <button className="btn btn-primary btn-lg btn-block" disabled={busy} onClick={startPayment}><Icon name="download" />{tr(L, 'downloadCta')}</button>
                 <ul className="trust">
-                  <li>✓ {tr(L, 'payTrust1', vars)}</li>
-                  <li>✓ {tr(L, 'payTrust2')}</li>
-                  <li>✓ {tr(L, 'payTrust3', vars)}</li>
-                  <li>✓ {tr(L, 'payTrust4')}</li>
+                  <li><Icon name="check" size={16} />{tr(L, 'payTrust1', vars)}</li>
+                  <li><Icon name="check" size={16} />{tr(L, 'payTrust2')}</li>
+                  <li><Icon name="check" size={16} />{tr(L, 'payTrust3', vars)}</li>
+                  <li><Icon name="check" size={16} />{tr(L, 'payTrust4')}</li>
                 </ul>
+                <p className="hint">{tr(L, 'consent')}</p>
               </div>
             </>
           ) : (
             <>
-              <h1>✅ {tr(L, 'paidTitle')}</h1>
-              <button className="btn btn-primary btn-lg btn-block" disabled={busy} onClick={() => run(async () => saveBlob(await nodeToPdfBlob(pageRef.current!), `${base}-biodata.pdf`))}>⬇ {tr(L, 'downloadPdf')}</button>
-              <button className="btn btn-primary btn-block" disabled={busy} onClick={() => run(async () => saveBlob(await nodeToPngBlob(cardRef.current!, 1), `${base}-whatsapp.png`))}>⬇ {tr(L, 'downloadCard')}</button>
-              {doc.photo && <button className="btn btn-ghost btn-block" disabled={busy} onClick={() => run(async () => saveBlob(await nodeToPdfBlob(noPhotoRef.current!), `${base}-biodata-no-photo.pdf`))}>⬇ {tr(L, 'downloadNoPhoto')}</button>}
-              <button className="btn btn-whatsapp btn-block" disabled={busy} onClick={shareFinal}>💬 {tr(L, 'shareWhatsApp')}</button>
-              <button className="btn btn-ghost btn-block" onClick={() => go(`edit/${doc.id}/0`)}>✎ {tr(L, 'editFree', { date: expiry })}</button>
-              <button className="btn btn-ghost btn-block" onClick={() => go('start')}>+ {tr(L, 'makeAnother')}</button>
+              <h1>{tr(L, 'paidTitle')}</h1>
+              <button className="btn btn-primary btn-lg btn-block" disabled={busy} onClick={() => run(async () => saveBlob(await nodeToPdfBlob(pageRef.current!), `${base}-biodata.pdf`))}><Icon name="download" />{tr(L, 'downloadPdf')}</button>
+              <button className="btn btn-primary btn-block" disabled={busy} onClick={() => run(async () => saveBlob(await nodeToPngBlob(cardRef.current!, 1), `${base}-whatsapp.png`))}><Icon name="download" />{tr(L, 'downloadCard')}</button>
+              {doc.photo && <button className="btn btn-ghost btn-block" disabled={busy} onClick={() => run(async () => saveBlob(await nodeToPdfBlob(noPhotoRef.current!), `${base}-biodata-no-photo.pdf`))}><Icon name="download" />{tr(L, 'downloadNoPhoto')}</button>}
+              <button className="btn btn-whatsapp btn-block" disabled={busy} onClick={shareFinal}><Icon name="chat" />{tr(L, 'shareWhatsApp')}</button>
+              <button className="btn btn-ghost btn-block" onClick={() => go(`edit/${doc.id}`)}><Icon name="edit" size={18} />{tr(L, 'editFree', { date: expiry })}</button>
+              <button className="btn btn-ghost btn-block" onClick={() => go('start')}><Icon name="plus" size={18} />{tr(L, 'makeAnother')}</button>
             </>
           )}
-          {busy && <p className="working">⏳ {tr(L, 'working')}</p>}
+          {busy && <p className="working">{tr(L, 'working')}</p>}
           {msg && <p className="error" role="alert">{msg}</p>}
           <div className="preview-foot">
-            {help && <a href={help} target="_blank" rel="noreferrer">💬 {tr(L, 'help')}</a>}
+            {help && <a href={help} target="_blank" rel="noreferrer"><Icon name="chat" size={18} />{tr(L, 'help')}</a>}
             <button className="linkish" onClick={() => onLegal('privacy')}>{tr(L, 'privacy')}</button>
             <button className="linkish" onClick={() => onLegal('terms')}>{tr(L, 'terms')}</button>
           </div>
@@ -159,7 +162,7 @@ export function Preview({ doc, onLegal }: { doc: Doc; onChange: (d: Doc) => void
       {demo && (
         <div className="modal-back" onClick={() => setDemo(false)}>
           <div className="modal" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
-            <h2>🧪 {tr(L, 'demoTitle')}</h2>
+            <h2>{tr(L, 'demoTitle')}</h2>
             <p>{tr(L, 'demoBody')}</p>
             <button className="btn btn-primary btn-block" onClick={() => onPaid(`demo_${Date.now()}`)}>{tr(L, 'demoPay')}</button>
             <button className="btn btn-ghost btn-block" onClick={() => setDemo(false)}>{tr(L, 'cancel')}</button>

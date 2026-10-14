@@ -4,7 +4,8 @@ import { go } from './nav';
 import { Editor } from './pages/Editor';
 import { Landing } from './pages/Landing';
 import { Preview } from './pages/Preview';
-import { Start } from './pages/Start';
+import { newDoc } from './presets';
+import type { Purpose } from './types';
 import { getUiLang, listDocs, saveDoc, setUiLang } from './store';
 import type { Doc, Lang } from './types';
 
@@ -45,18 +46,31 @@ export default function App() {
 
   const changeLang = (l: Lang) => { setLang(l); setUiLang(l); };
 
+  // "start/<purpose>" makes a new biodata straight away — no setup questions.
+  const creating = useRef('');
+  useEffect(() => {
+    if (route.page !== 'start') return;
+    const key = `${route.id}-${window.location.hash}`;
+    if (creating.current === key) return; // React dev mode runs effects twice
+    creating.current = key;
+    const purpose: Purpose = route.id === 'job' || route.id === 'general' ? route.id : 'marriage';
+    const d = newDoc(purpose, uiLang, purpose === 'marriage' ? 'hindu' : 'other', 'female');
+    saveDoc(d);
+    setDoc(d);
+    window.location.replace(`#/edit/${d.id}`);
+    setTimeout(() => { creating.current = ''; }, 0);
+  }, [route.page, route.id, uiLang]);
+
   useEffect(() => {
     document.documentElement.lang = doc && (route.page === 'edit' || route.page === 'preview') ? doc.lang : uiLang;
   }, [uiLang, doc, route.page]);
 
   let page;
-  if (route.page === 'start') {
-    page = <Start lang={uiLang} initialPurpose={route.id} onLang={changeLang} onCreate={(d) => { saveDoc(d); setDoc(d); go(`edit/${d.id}/0`); }} />;
-  } else if (route.page === 'edit' && doc && doc.id === route.id) {
-    page = <Editor doc={doc} step={route.step} onChange={update} />;
+  if (route.page === 'edit' && doc && doc.id === route.id) {
+    page = <Editor doc={doc} onChange={update} />;
   } else if (route.page === 'preview' && doc && doc.id === route.id) {
     page = <Preview doc={doc} onChange={update} onLegal={setLegal} />;
-  } else if (route.page === 'edit' || route.page === 'preview') {
+  } else if (route.page === 'edit' || route.page === 'preview' || route.page === 'start') {
     page = <div className="loading" />;
   } else {
     page = <Landing lang={uiLang} onLang={changeLang} onLegal={setLegal} />;

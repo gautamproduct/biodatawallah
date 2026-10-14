@@ -1,3 +1,4 @@
+import { Icon } from './Icon';
 import { useState } from 'react';
 import { FIELDS, fieldLabel } from '../fields';
 import type { Field, Lang } from '../types';
@@ -14,7 +15,7 @@ export function MicButton({ lang, onText }: { lang: Lang; onText: (t: string) =>
       aria-label="Speak"
       title="Speak"
       onClick={() => { setOn(true); listen(lang, onText, () => setOn(false)); }}
-    >🎤</button>
+    ><Icon name="mic" /></button>
   );
 }
 
@@ -74,21 +75,16 @@ export function FieldRow({ field, lang, first, last, onChange, onMove, onDelete 
           <label htmlFor={id}>{label}</label>
         )}
         <div className="field-tools">
-          <button
-            type="button"
-            className="icon-btn"
-            aria-label={field.hidden ? tr(lang, 'showOnBio') : tr(lang, 'hideOnBio')}
-            title={field.hidden ? tr(lang, 'showOnBio') : tr(lang, 'hideOnBio')}
-            onClick={() => onChange({ ...field, hidden: !field.hidden })}
-          >{field.hidden ? '🙈' : '👁️'}</button>
+          {field.hidden && <span className="tag"><Icon name="eyeOff" size={14} />{tr(lang, 'hiddenTag')}</span>}
           <div className="menu-wrap">
-            <button type="button" className="icon-btn" aria-label={tr(lang, 'more')} aria-expanded={menu} onClick={() => setMenu(!menu)}>⋯</button>
+            <button type="button" className="icon-btn subtle" aria-label={tr(lang, 'more')} aria-expanded={menu} onClick={() => setMenu(!menu)}><Icon name="more" className="dots" /></button>
             {menu && (
               <div className="menu" onMouseLeave={() => setMenu(false)}>
-                <button onClick={() => { setRenaming(true); setDraftLabel(label); setMenu(false); }}>✎ {tr(lang, 'rename')}</button>
-                {!first && <button onClick={() => { onMove(-1); setMenu(false); }}>↑ {tr(lang, 'moveUp')}</button>}
-                {!last && <button onClick={() => { onMove(1); setMenu(false); }}>↓ {tr(lang, 'moveDown')}</button>}
-                <button className="danger" onClick={() => { onDelete(); setMenu(false); }}>🗑 {tr(lang, 'remove')}</button>
+                <button onClick={() => { onChange({ ...field, hidden: !field.hidden }); setMenu(false); }}>{field.hidden ? <><Icon name="eye" size={18} />{tr(lang, 'showOnBio')}</> : <><Icon name="eyeOff" size={18} />{tr(lang, 'hideOnBio')}</>}</button>
+                <button onClick={() => { setRenaming(true); setDraftLabel(label); setMenu(false); }}><Icon name="edit" size={18} />{tr(lang, 'rename')}</button>
+                {!first && <button onClick={() => { onMove(-1); setMenu(false); }}><Icon name="up" size={18} />{tr(lang, 'moveUp')}</button>}
+                {!last && <button onClick={() => { onMove(1); setMenu(false); }}><Icon name="down" size={18} />{tr(lang, 'moveDown')}</button>}
+                <button className="danger" onClick={() => { onDelete(); setMenu(false); }}><Icon name="trash" size={18} />{tr(lang, 'remove')}</button>
               </div>
             )}
           </div>
@@ -98,7 +94,7 @@ export function FieldRow({ field, lang, first, last, onChange, onMove, onDelete 
         {input}
         {voice && <MicButton lang={lang} onText={(t) => set(field.value ? `${field.value} ${t}` : t)} />}
       </div>
-      {field.hidden && <div className="hint">{def?.sensitive ? tr(lang, 'sensitiveNote') : tr(lang, 'hiddenTag')}</div>}
+      {field.hidden && def?.sensitive && <div className="hint">{tr(lang, 'sensitiveNote')}</div>}
     </div>
   );
 }

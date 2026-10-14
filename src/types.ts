@@ -48,5 +48,7 @@ export interface Doc {
   traits: string[];
   hobbies: string;
   writerVariant: number;
+  /** Last auto-written text per section key; if the body still equals it, it keeps updating as details change. */
+  auto?: Record<string, string>;
   updatedAt: number;
 }

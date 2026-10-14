@@ -181,7 +181,7 @@ export function displayValue(key: string | null, value: string, lang: Lang): str
     const d = new Date(value + 'T00:00:00');
     if (Number.isNaN(d.getTime())) return value;
     const locale = lang === 'en' ? 'en-IN' : lang === 'hi' ? 'hi-IN' : 'mr-IN';
-    return d.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
+    return d.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric', numberingSystem: 'latn' });
   }
   if (def?.type === 'time') {
     const [h, m] = value.split(':').map(Number);
