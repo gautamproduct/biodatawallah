@@ -43,6 +43,10 @@ const S = {
   qLang: { en: 'Language of the biodata', hi: 'बायोडाटा की भाषा', mr: 'बायोडाटाची भाषा' },
   qCommunity: { en: 'Community format', hi: 'समाज / धर्म का फ़ॉर्मेट', mr: 'समाज / धर्माचा फॉरमॅट' },
   qGender: { en: 'The biodata is for a', hi: 'बायोडाटा किसका है?', mr: 'बायोडाटा कोणाचा आहे?' },
+  girlShort: { en: 'Girl', hi: 'लड़की', mr: 'मुलगी' },
+  boyShort: { en: 'Boy', hi: 'लड़का', mr: 'मुलगा' },
+  woman: { en: 'Woman', hi: 'महिला', mr: 'स्त्री' },
+  man: { en: 'Man', hi: 'पुरुष', mr: 'पुरुष' },
   girl: { en: 'Girl / Woman', hi: 'लड़की / महिला', mr: 'मुलगी / स्त्री' },
   boy: { en: 'Boy / Man', hi: 'लड़का / पुरुष', mr: 'मुलगा / पुरुष' },
   begin: { en: 'Start filling', hi: 'भरना शुरू करें', mr: 'भरायला सुरू करा' },
@@ -62,6 +66,7 @@ const S = {
   runBy: { en: 'Run by {name}, {city}', hi: '{name} द्वारा संचालित, {city}', mr: '{name} यांच्याद्वारे संचालित, {city}' },
 
   // Builder
+  moreDetails: { en: 'more details', hi: 'और विवरण', mr: 'अधिक माहिती' },
   basicTitle: { en: 'Basic details', hi: 'मुख्य जानकारी', mr: 'मुख्य माहिती' },
   optionalHead: { en: 'Add more if you like (optional)', hi: 'चाहें तो और जोड़ें (वैकल्पिक)', mr: 'हवे असल्यास आणखी जोडा (ऐच्छिक)' },
   autoWritten: { en: 'Written for you', hi: 'आपके लिए लिखा गया', mr: 'तुमच्यासाठी लिहिले' },
@@ -140,6 +145,7 @@ const S = {
   payTrust2: { en: 'UPI · GPay · PhonePe · Paytm · Cards', hi: 'UPI · GPay · PhonePe · Paytm · कार्ड', mr: 'UPI · GPay · PhonePe · Paytm · कार्ड' },
   payTrust3: { en: 'Free edits & re-downloads for {days} days', hi: '{days} दिन तक मुफ़्त बदलाव और दोबारा डाउनलोड', mr: '{days} दिवस मोफत बदल आणि पुन्हा डाउनलोड' },
   payTrust4: { en: 'File not received? Full refund.', hi: 'फ़ाइल नहीं मिली? पूरे पैसे वापस।', mr: 'फाईल मिळाली नाही? पूर्ण पैसे परत.' },
+  payRef: { en: 'Payment ID (keep for any refund)', hi: 'भुगतान ID (रिफ़ंड के लिए रखें)', mr: 'पेमेंट ID (परताव्यासाठी जपून ठेवा)' },
   paidTitle: { en: 'Payment received — thank you!', hi: 'भुगतान मिल गया — धन्यवाद!', mr: 'पेमेंट मिळाले — धन्यवाद!' },
   downloadPdf: { en: 'Download PDF', hi: 'PDF डाउनलोड करें', mr: 'PDF डाउनलोड करा' },
   downloadCard: { en: 'Download WhatsApp photo', hi: 'WhatsApp फ़ोटो डाउनलोड करें', mr: 'WhatsApp फोटो डाउनलोड करा' },
@@ -167,7 +173,7 @@ const S = {
   paidBadge: { en: 'Paid', hi: 'भुगतान हो चुका', mr: 'पेमेंट झाले' },
   home: { en: 'Home', hi: 'होम', mr: 'होम' },
   close: { en: 'Close', hi: 'बंद करें', mr: 'बंद करा' },
-  consent: { en: 'I am the person in this biodata, or I have their permission to make it.', hi: 'यह बायोडाटा मेरा है, या जिसका है उनकी अनुमति से बना रहा/रही हूँ।', mr: 'हा बायोडाटा माझा आहे, किंवा ज्याचा आहे त्यांच्या परवानगीने बनवत आहे.' },
+  consent: { en: 'By continuing, you confirm this biodata is yours or made with their permission.', hi: 'आगे बढ़कर आप पुष्टि करते हैं कि यह बायोडाटा आपका है या उनकी अनुमति से बनाया गया है।', mr: 'पुढे जाऊन तुम्ही खात्री देता की हा बायोडाटा तुमचा आहे किंवा त्यांच्या परवानगीने बनवला आहे.' },
 } satisfies Record<string, Record<Lang, string>>;
 
 export type UIKey = keyof typeof S;

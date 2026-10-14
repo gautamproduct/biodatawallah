@@ -195,3 +195,4 @@
 .wa-foot { margin-top: auto; color: var(--accent2); font-size: 30px; font-weight: 600; }
 .wa-card .bd-watermark span { font-size: 88px; }
 .lang-hi .bd-watermark span, .lang-mr .bd-watermark span { letter-spacing: 0; }
+.bd-flow > .bd-kind-text { margin-top: calc(var(--fs) * .35); }

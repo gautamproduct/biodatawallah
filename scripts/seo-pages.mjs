@@ -168,20 +168,30 @@ const PAGES = [
   },
 ];
 
-const css = `body{margin:0;background:#fbf6ee;color:#2a1d16;font:17px/1.6 system-ui,'Noto Sans Devanagari',sans-serif}
-main{max-width:760px;margin:0 auto;padding:16px 16px 48px}
-a.brand{display:inline-flex;gap:8px;align-items:center;color:#2a1d16;text-decoration:none;font-weight:600;margin:6px 0 18px}
-a.brand span{width:32px;height:32px;border-radius:9px;background:#7a1f2b;color:#f3d27a;display:grid;place-items:center}
-h1{color:#7a1f2b;font-size:clamp(28px,5vw,40px);line-height:1.25;margin:0 0 14px}
-h2{font-size:22px;margin:28px 0 10px}
-.cta{display:inline-block;background:#7a1f2b;color:#fff;padding:14px 22px;border-radius:12px;text-decoration:none;font-weight:600;margin:10px 0}
-.note{background:#eaf6ee;border:1px solid #c6e5d1;border-radius:12px;padding:12px 14px;color:#145c39}
-ul{padding-left:20px}li{margin:6px 0}
-details{background:#fff;border:1px solid #eadfce;border-radius:12px;padding:10px 14px;margin:8px 0}summary{font-weight:600;cursor:pointer}
-nav.more a{display:inline-block;margin:4px 10px 4px 0;color:#7a1f2b}
-footer{color:#6e5f55;font-size:14px;margin-top:36px;border-top:1px solid #eadfce;padding-top:14px}`;
+const css = `*{box-sizing:border-box}body{margin:0;background:#fff;color:#0e0e12;font:17px/1.65 Inter,'Anek Devanagari','Noto Sans Devanagari',system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
+.glow{position:absolute;inset:0 0 auto;height:520px;z-index:-1;background:radial-gradient(520px 320px at 80% 10%,rgba(255,122,89,.18),transparent 70%),radial-gradient(480px 300px at 15% 0,rgba(229,51,107,.14),transparent 70%)}
+header{max-width:860px;margin:12px auto 0;padding:10px 12px 10px 16px;display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(14,14,18,.06);border-radius:999px;background:rgba(255,255,255,.85);box-shadow:0 6px 24px rgba(14,14,18,.06)}
+a.brand{display:inline-flex;gap:9px;align-items:center;color:#0e0e12;text-decoration:none;font-weight:700;letter-spacing:-.02em}
+a.brand span{width:30px;height:30px;border-radius:9px;background:linear-gradient(100deg,#e5336b,#ff6a5c 55%,#ff9a4d);color:#fff;display:grid;place-items:center;font-weight:700}
+a.brand b{color:#e5336b}
+main{max-width:760px;margin:0 auto;padding:36px 20px 56px;position:relative}
+h1{font-weight:800;font-size:clamp(32px,6vw,48px);line-height:1.12;letter-spacing:-.035em;margin:0 0 16px}
+h2{font-weight:700;font-size:24px;letter-spacing:-.02em;margin:36px 0 12px}
+p{color:#3c3c46}
+.cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(100deg,#e5336b,#ff6a5c 55%,#ff9a4d);color:#fff;padding:14px 26px;border-radius:999px;text-decoration:none;font-weight:700;box-shadow:0 10px 24px rgba(229,51,107,.3);margin:8px 0}
+.cta.small{padding:9px 16px;font-size:15px;box-shadow:none;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px;padding:0;list-style:none}
+.chips li{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #e8e8ee;border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600;box-shadow:0 2px 8px rgba(14,14,18,.05)}
+.chips li i{width:18px;height:18px;border-radius:999px;display:inline-block;background:linear-gradient(135deg,#22c55e,#059669)}
+ul.list{padding-left:20px}ul.list li{margin:8px 0;color:#3c3c46}
+.note{background:#f5f5f7;border-radius:16px;padding:14px 16px;color:#3c3c46}
+details{border-bottom:1px solid #e8e8ee}summary{cursor:pointer;font-weight:600;padding:16px 0;list-style:none}summary::-webkit-details-marker{display:none}details p{margin:0 0 16px}
+nav.more{display:flex;flex-wrap:wrap;gap:8px}nav.more a{display:inline-block;padding:7px 14px;border-radius:999px;background:#f5f5f7;color:#3c3c46;text-decoration:none;font-size:14.5px;font-weight:500}
+footer{color:#73737f;font-size:14px;margin-top:40px;border-top:1px solid #e8e8ee;padding-top:16px}`;
 
-const CTA = { en: 'Make my biodata — free', hi: 'मेरा बायोडाटा बनाएँ — मुफ़्त', mr: 'माझा बायोडाटा बनवा — मोफत' };
+const CTA_SHORT = { en: 'Make biodata', hi: 'बायोडाटा बनाएँ', mr: 'बायोडाटा बनवा' };
+const TRUST = { en: ['Data stays private', 'No login', 'See first, pay later', 'Refund guarantee'], hi: ['डेटा सुरक्षित', 'लॉगिन नहीं', 'पहले देखें', 'पैसे वापसी'], mr: ['डेटा सुरक्षित', 'लॉगिन नाही', 'आधी पाहा', 'पैसे परत'] };
+const CTA = { en: 'Make biodata — free', hi: 'बायोडाटा बनाएँ — मुफ़्त', mr: 'बायोडाटा बनवा — मोफत' };
 const INCLUDE = { en: 'What to include', hi: 'क्या-क्या लिखें', mr: 'काय काय लिहावे' };
 const FAQ = { en: 'Common questions', hi: 'अक्सर पूछे जाने वाले सवाल', mr: 'नेहमीचे प्रश्न' };
 const MORE = { en: 'More biodata guides', hi: 'और जानकारी', mr: 'आणखी माहिती' };
@@ -203,22 +213,25 @@ function page(p) {
 <meta name="description" content="${esc(p.desc)}">
 <link rel="canonical" href="${url}">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#ffffff">
 <meta property="og:title" content="${esc(p.title)}"><meta property="og:description" content="${esc(p.desc)}"><meta property="og:url" content="${url}"><meta property="og:type" content="article">
 <script type="application/ld+json">${JSON.stringify(faqLd)}</script>
 <style>${css}</style>
 </head>
-<body><main>
-<a class="brand" href="../"><span>ब</span>Biodata Wallah</a>
+<body><div class="glow"></div>
+<header><a class="brand" href="../"><span>ब</span>Biodata <b>Wallah</b></a><a class="cta small" href="${app}">${CTA_SHORT[p.lang]}</a></header>
+<main>
 <h1>${esc(p.h1)}</h1>
+<ul class="chips">${TRUST[p.lang].map((t) => `<li><i></i>${t}</li>`).join('')}</ul>
 ${p.intro.map((x) => `<p>${esc(x)}</p>`).join('\n')}
 <a class="cta" href="${app}">${CTA[p.lang]} →</a>
-<p class="note">✓ ${PRICE[p.lang]}</p>
+<p class="note">${PRICE[p.lang]}</p>
 <h2>${INCLUDE[p.lang]}</h2>
-<ul>${p.list.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
-<p class="note">💡 ${esc(p.tip)}</p>
+<ul class="list">${p.list.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+<p class="note">${esc(p.tip)}</p>
 <h2>${FAQ[p.lang]}</h2>
 ${p.faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('\n')}
-<a class="cta" href="${app}">${CTA[p.lang]} →</a>
+<p><a class="cta" href="${app}">${CTA[p.lang]} →</a></p>
 <h2>${MORE[p.lang]}</h2>
 <nav class="more">${others.map((x) => `<a href="../${x.slug}/">${esc(x.h1)}</a>`).join('')}</nav>
 <footer>© ${new Date().getFullYear()} Biodata Wallah</footer>
@@ -243,4 +256,5 @@ ${urls.map((u) => `  <url><loc>${SITE}/${u}</loc><lastmod>${today}</lastmod></ur
 `);
 writeFileSync(join(DIST, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
 writeFileSync(join(DIST, '.nojekyll'), '');
+writeFileSync(join(DIST, '404.html'), `<!doctype html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Page not found — Biodata Wallah</title><meta name="robots" content="noindex"><style>${css}</style></head><body><div class="glow"></div><main style="text-align:center;padding-top:80px"><h1>पेज नहीं मिला</h1><p>Page not found. यह पेज मौजूद नहीं है।</p><a class="cta" href="${SITE}/">होम पर जाएँ · Go home →</a></main></body></html>`);
 console.log(`SEO: ${PAGES.length} pages + sitemap for ${SITE}`);

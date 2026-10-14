@@ -427,3 +427,23 @@ img { max-width: 100%; }
 .pay-apps { gap: 5px; flex-wrap: nowrap; }
 .pay-apps .app-logo { min-width: 0; flex: 1; padding: 0 4px; height: 32px; }
 .pay-apps .app-upi { flex: 1; padding: 0 4px; height: 32px; }
+@media (max-width: 560px) {
+  .hero { gap: 28px; padding-bottom: 8px; }
+  .phone { width: 236px; border-radius: 38px; padding: 9px; }
+  .phone-screen { border-radius: 30px; }
+  .float-chip.c2 { top: auto; bottom: 14%; right: 0; }
+  .pick { padding-top: 24px; }
+}
+.file-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 560px) { .float-chip { display: none; } }
+
+/* Mic sits inside the input so every box lines up */
+.field-input { position: relative; display: block; }
+.field-input > input, .field-input > select, .field-input > textarea { width: 100%; }
+.field-input:has(> .mic) > input, .field-input:has(> .mic) > textarea { padding-right: 52px; }
+.field-input > .mic { position: absolute; right: 6px; top: 6px; width: 40px; height: 40px; background: #fff; box-shadow: var(--shadow-1); border-radius: 12px; }
+.tag.more { background: transparent; border: 1px solid var(--line); font-weight: 500; }
+.swatches { gap: 8px; } .swatch { width: 32px; height: 32px; }
+@media (max-width: 420px) { .tabs button { font-size: 14.5px; gap: 6px; padding: 0 6px; } }
+.pay-ref { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0 0 6px; font-size: 13.5px; color: var(--good); background: var(--good-tint); padding: 6px 12px; border-radius: 999px; } .pay-ref b { color: var(--ink); font-weight: 600; }
+@media (min-width: 561px) { .float-chip.c2 { right: -2%; } }

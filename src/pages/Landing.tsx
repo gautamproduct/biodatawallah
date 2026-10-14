@@ -38,7 +38,7 @@ const COPY = {
   priceTitle: c(`Just ₹${P}`, `सिर्फ़ ₹${P}`, `फक्त ₹${P}`),
   priceSub: c('Pay only when you download', 'पैसे सिर्फ़ डाउनलोड के समय', 'पैसे फक्त डाउनलोड करताना'),
   inc: [c('PDF for printing', 'प्रिंट के लिए PDF', 'प्रिंटसाठी PDF'), c('Photo for WhatsApp', 'WhatsApp के लिए फ़ोटो', 'WhatsApp साठी फोटो'), c('Edit free for 90 days', '90 दिन तक मुफ़्त बदलाव', '90 दिवस मोफत बदल')],
-  shop: c(`Shop charges ₹100–300. Here ₹${P}.`, `दुकान पर ₹100–300। यहाँ ₹${P}।`, `दुकानात ₹100–300. इथे ₹${P}.`),
+  shop: c(`Shop: ₹100–300 · Here: only ₹${P}`, `दुकान पर ₹100–300 · यहाँ सिर्फ़ ₹${P}`, `दुकानात ₹100–300 · इथे फक्त ₹${P}`),
   chat1: c('Please send the biodata', 'बेटा, बायोडाटा भेज दो', 'बाळा, बायोडाटा पाठव'),
   chat2: c('Looks lovely!', 'बहुत सुंदर!', 'खूप छान!'),
   family: c('Family', 'परिवार', 'कुटुंब'),
@@ -73,7 +73,6 @@ export function Landing({ lang, onLang, onLegal }: { lang: Lang; onLang: (l: Lan
               {docs[0] && <button className="btn btn-quiet btn-lg" onClick={() => go(`edit/${docs[0].id}`)}>{tr(L, 'continueDraft')}</button>}
             </div>
             <TrustBar lang={L} pick={[0, 1, 2]} />
-            <PayAssure lang={L} />
           </div>
 
           <div className="phone-stage" aria-hidden>
@@ -82,7 +81,7 @@ export function Landing({ lang, onLang, onLegal }: { lang: Lang; onLang: (l: Lan
               <div className="phone-screen">
                 <div className="wa-top">
                   <span className="wa-av">{name.slice(0, 1)}</span>
-                  <span className="wa-title">{COPY.family[L]}<small>online</small></span>
+                  <span className="wa-title">{COPY.family[L]}<small>{({ en: 'online', hi: 'ऑनलाइन', mr: 'ऑनलाइन' } as T3)[L]}</small></span>
                 </div>
                 <div className="wa-chat">
                   <div className="bub in">{COPY.chat1[L]}<time>9:41</time></div>
@@ -91,7 +90,7 @@ export function Landing({ lang, onLang, onLegal }: { lang: Lang; onLang: (l: Lan
                     <time>9:42 ✓✓</time>
                   </div>
                   <div className="bub out">
-                    <div className="bub-file"><span className="pdf">PDF</span><span>{name}-biodata.pdf<small>1 page</small></span></div>
+                    <div className="bub-file"><span className="pdf">PDF</span><span className="file-name">{name}.pdf<small>1 page · A4</small></span></div>
                     <time>9:42 ✓✓</time>
                   </div>
                   <div className="bub in">{COPY.chat2[L]}<time>9:43</time></div>
@@ -166,6 +165,7 @@ export function Landing({ lang, onLang, onLegal }: { lang: Lang; onLang: (l: Lan
 
         <footer className="footer">
           <div className="footer-left">
+            <a className="brand" href="#/"><span className="brand-mark" aria-hidden>ब</span><span className="brand-name">Biodata <b>Wallah</b></span></a>
             <BusinessLine lang={L} />
             <span className="muted small">© {new Date().getFullYear()} Biodata Wallah</span>
           </div>

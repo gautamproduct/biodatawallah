@@ -114,11 +114,10 @@ export function Preview({ doc, onLegal }: { doc: Doc; onChange: (d: Doc) => void
             <>
               <h1>{tr(L, 'readyTitle')}</h1>
               <p className="muted">{tr(L, 'readySub')}</p>
-              <button className="btn btn-ghost btn-block" onClick={() => go(`edit/${doc.id}`)}><Icon name="edit" size={18} />{tr(L, 'edit')}</button>
               <button className="btn btn-whatsapp btn-block" disabled={busy} onClick={sendToFamily}><Icon name="chat" />{tr(L, 'sendFamily')}</button>
               <div className="pay-card">
                 <div className="price-line"><strong>₹{CONFIG.price}</strong><span>{tr(L, 'priceSub')}</span></div>
-                <button className="btn btn-primary btn-lg btn-block" disabled={busy} onClick={startPayment}><Icon name="download" />{tr(L, 'downloadCta')}</button>
+                <button className="btn btn-brand btn-lg btn-block" disabled={busy} onClick={startPayment}><Icon name="download" />{tr(L, 'downloadCta')}</button>
                 <PayTrust lang={L} />
                 <WhatYouGet lang={L} compact />
                 <p className="hint">{tr(L, 'consent')}</p>
@@ -127,8 +126,9 @@ export function Preview({ doc, onLegal }: { doc: Doc; onChange: (d: Doc) => void
           ) : (
             <>
               <h1>{tr(L, 'paidTitle')}</h1>
-              <button className="btn btn-primary btn-lg btn-block" disabled={busy} onClick={() => run(async () => saveBlob(await nodeToPdfBlob(pageRef.current!), `${base}-biodata.pdf`))}><Icon name="download" />{tr(L, 'downloadPdf')}</button>
-              <button className="btn btn-primary btn-block" disabled={busy} onClick={() => run(async () => saveBlob(await nodeToPngBlob(cardRef.current!, 1), `${base}-whatsapp.png`))}><Icon name="download" />{tr(L, 'downloadCard')}</button>
+              {unlock && !unlock.paymentId.startsWith('demo_') && <p className="pay-ref"><Icon name="check" size={14} />{tr(L, 'payRef')}: <b>{unlock.paymentId}</b></p>}
+              <button className="btn btn-brand btn-lg btn-block" disabled={busy} onClick={() => run(async () => saveBlob(await nodeToPdfBlob(pageRef.current!), `${base}-biodata.pdf`))}><Icon name="download" />{tr(L, 'downloadPdf')}</button>
+              <button className="btn btn-quiet btn-block" disabled={busy} onClick={() => run(async () => saveBlob(await nodeToPngBlob(cardRef.current!, 1), `${base}-whatsapp.png`))}><Icon name="download" />{tr(L, 'downloadCard')}</button>
               {doc.photo && <button className="btn btn-ghost btn-block" disabled={busy} onClick={() => run(async () => saveBlob(await nodeToPdfBlob(noPhotoRef.current!), `${base}-biodata-no-photo.pdf`))}><Icon name="download" />{tr(L, 'downloadNoPhoto')}</button>}
               <button className="btn btn-whatsapp btn-block" disabled={busy} onClick={shareFinal}><Icon name="chat" />{tr(L, 'shareWhatsApp')}</button>
               <button className="btn btn-ghost btn-block" onClick={() => go(`edit/${doc.id}`)}><Icon name="edit" size={18} />{tr(L, 'editFree', { date: expiry })}</button>

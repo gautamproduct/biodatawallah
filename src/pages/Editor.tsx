@@ -64,7 +64,7 @@ export function Editor({ doc, onChange: rawChange }: { doc: Doc; onChange: (d: D
               {(['female', 'male'] as const).map((g) => (
                 <button key={g} className={`chip chip-small ${doc.gender === g ? 'on' : ''}`} aria-pressed={doc.gender === g}
                   onClick={() => onChange(reshape(doc, doc.community, g))}>
-                  {g === 'female' ? tr(L, 'girl') : tr(L, 'boy')}
+                  {doc.purpose === 'marriage' ? tr(L, g === 'female' ? 'girlShort' : 'boyShort') : tr(L, g === 'female' ? 'woman' : 'man')}
                 </button>
               ))}
             </div>
@@ -98,7 +98,6 @@ export function Editor({ doc, onChange: rawChange }: { doc: Doc; onChange: (d: D
           <p className="hint center">{tr(L, 'typingTip')}</p>
 
           <div className="builder-bar">
-            <TrustBar lang={L} pick={[4]} tone="plain" />
             <button className="btn btn-primary btn-lg btn-block" onClick={() => go(`preview/${doc.id}`)}>{tr(L, 'previewCta')} <Icon name="arrow" /></button>
           </div>
         </div>
@@ -147,6 +146,7 @@ function OptionalCard({ doc, sec, essentials, onChange, onSection, onField }: {
           <button className="card-toggle" onClick={() => setOpen(!open)} aria-expanded={open}>
             <span className="card-plus" aria-hidden><Icon name={open ? 'minus' : 'plus'} size={16} /></span>
             <span className="card-name">{sectionTitle(doc, sec)}</span>
+            {sec.kind === 'fields' && sec.fields.some((f) => f.key && essentials.includes(f.key)) && <span className="tag more">{tr(L, 'moreDetails')}</span>}
             {isAuto && <span className="tag good"><Icon name="sparkle" size={14} />{tr(L, 'autoWritten')}</span>}
             {!isAuto && count > 0 && <span className="tag"><Icon name="check" size={14} />{count}</span>}
             {sec.hidden && <span className="tag"><Icon name="eyeOff" size={14} /></span>}

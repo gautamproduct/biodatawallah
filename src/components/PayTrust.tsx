@@ -27,7 +27,7 @@ export function PayTrust({ lang }: { lang: Lang }) {
         <span className="app-upi"><b>UPI</b></span>
         {APPS.map((a) => <span key={a} className="app-logo" title={BRANDS[a].title}><Logo b={a} size={a === 'gpay' || a === 'paytm' ? 30 : 20} /></span>)}
       </div>
-      <div className="pt-razor"><Logo b="razorpay" size={14} />Secured by <b>Razorpay</b></div>
+      <div className="pt-razor"><Logo b="razorpay" size={14} />{lang === 'en' ? <>Secured by <b>Razorpay</b></> : <><b>Razorpay</b>&nbsp;{lang === 'hi' ? 'द्वारा सुरक्षित' : 'द्वारे सुरक्षित'}</>}</div>
       <ul>
         {FULL.map((x, i) => <li key={x.t.en}><span className={`pt-ic pt-ic-${i + 1}`}><Icon name={x.icon} size={14} /></span>{x.t[lang]}</li>)}
       </ul>
