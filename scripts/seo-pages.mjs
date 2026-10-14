@@ -185,7 +185,7 @@ const CTA = { en: 'Make my biodata — free', hi: 'मेरा बायोड�
 const INCLUDE = { en: 'What to include', hi: 'क्या-क्या लिखें', mr: 'काय काय लिहावे' };
 const FAQ = { en: 'Common questions', hi: 'अक्सर पूछे जाने वाले सवाल', mr: 'नेहमीचे प्रश्न' };
 const MORE = { en: 'More biodata guides', hi: 'और जानकारी', mr: 'आणखी माहिती' };
-const PRICE = { en: 'Free to make and preview. ₹49 only when you download.', hi: 'बनाना और देखना मुफ़्त। सिर्फ़ डाउनलोड पर ₹49।', mr: 'बनवणे आणि पाहणे मोफत. फक्त डाउनलोडसाठी ₹49.' };
+const PRICE = { en: 'Free to make and preview. ₹49 only when you download · Secure UPI via Razorpay · No hidden charges · Refund if any problem.', hi: 'बनाना और देखना मुफ़्त। सिर्फ़ डाउनलोड पर ₹49 · Razorpay से सुरक्षित UPI · कोई छुपा शुल्क नहीं · दिक्कत पर पैसे वापस।', mr: 'बनवणे आणि पाहणे मोफत. फक्त डाउनलोडसाठी ₹49 · Razorpay द्वारे सुरक्षित UPI · छुपे शुल्क नाहीत · अडचणीत पैसे परत.' };
 
 function page(p) {
   const url = `${SITE}/${p.slug}/`;

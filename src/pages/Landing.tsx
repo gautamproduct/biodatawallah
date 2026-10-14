@@ -3,6 +3,7 @@ import { LangSwitch, TopBar } from '../components/Header';
 import { Icon } from '../components/Icon';
 import { TrustBar } from '../components/TrustBar';
 import { helpLink } from '../components/Legal';
+import { PayAssure } from '../components/PayTrust';
 import { Scaled } from '../components/Scaled';
 import { BusinessLine } from '../components/WhatYouGet';
 import { CONFIG } from '../config';
@@ -72,6 +73,7 @@ export function Landing({ lang, onLang, onLegal }: { lang: Lang; onLang: (l: Lan
               {docs[0] && <button className="btn btn-quiet btn-lg" onClick={() => go(`edit/${docs[0].id}`)}>{tr(L, 'continueDraft')}</button>}
             </div>
             <TrustBar lang={L} pick={[0, 1, 2]} />
+            <PayAssure lang={L} />
           </div>
 
           <div className="phone-stage" aria-hidden>
@@ -137,12 +139,14 @@ export function Landing({ lang, onLang, onLegal }: { lang: Lang; onLang: (l: Lan
               <li key={n}><span className="step-ic"><Icon name={s.i} size={26} /></span><span className="step-no">{n + 1}</span><p>{s.t[L]}</p></li>
             ))}
           </ol>
+          <div className="center"><PayAssure lang={L} /></div>
         </section>
 
         <section className="final-simple">
           <TrustBar lang={L} pick={[3, 4, 5]} tone="plain" />
           <button className="btn btn-brand btn-lg" onClick={() => go('start')}>{COPY.cta[L]} <Icon name="arrow" /></button>
           <p className="muted">{COPY.shop[L]}</p>
+          <PayAssure lang={L} />
         </section>
 
         {docs.length > 0 && (

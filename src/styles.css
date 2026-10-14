@@ -372,3 +372,14 @@ img { max-width: 100%; }
 .trustbar-plain::-webkit-scrollbar { display: none; }
 .trustbar-plain li { flex: none; font-size: 13.5px; padding: 5px 11px; }
 @media (max-width: 560px) { .trustbar:not(.trustbar-plain) li { font-size: 13.5px; padding: 5px 11px; } }
+
+/* Payment trust */
+.paytrust { display: grid; gap: 10px; background: var(--good-tint); border-radius: 16px; padding: 12px 14px; }
+.paytrust ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.paytrust li { display: flex; gap: 8px; align-items: flex-start; font-size: 14.5px; font-weight: 500; color: #134d33; line-height: 1.4; }
+.paytrust li .icon { color: var(--good); margin-top: 2px; }
+.pay-apps { display: flex; flex-wrap: wrap; gap: 6px; }
+.pay-apps span { background: #fff; border: 1px solid #cfe9db; border-radius: 8px; padding: 3px 9px; font-size: 12.5px; font-weight: 700; color: var(--ink-2); letter-spacing: .01em; }
+.payassure { display: inline-flex; align-items: center; gap: 6px; margin: 12px 0 0; font-size: 13.5px; font-weight: 500; color: var(--muted); }
+.payassure .icon { color: var(--good); }
+.final-simple .payassure { justify-content: center; margin-top: 0; }

@@ -33,6 +33,7 @@ const PRIVACY: Record<Lang, string[]> = {
 const TERMS: Record<Lang, string[]> = {
   en: [
     `Making and previewing a biodata is free. Downloading the final PDF and WhatsApp image costs ₹${CONFIG.price} per biodata (one-time, no subscription).`,
+    'Payments are processed securely by Razorpay. We never see or store your UPI PIN, card or bank details. There are no hidden charges or subscriptions.',
     `After payment you can edit and download the same biodata again for ${CONFIG.editDays} days on the same phone.`,
     'Refunds: if the file does not download or has a problem we cannot fix, message us on WhatsApp within 7 days for a full refund.',
     'Horoscope details are what you enter. Please verify them with your pandit. "Write it for me" text is a suggestion; please read and edit it.',
@@ -40,6 +41,7 @@ const TERMS: Record<Lang, string[]> = {
   ],
   hi: [
     `बायोडाटा बनाना और देखना मुफ़्त है। फ़ाइनल PDF और WhatsApp फ़ोटो डाउनलोड करने का शुल्क ₹${CONFIG.price} प्रति बायोडाटा है (एक बार, कोई सब्सक्रिप्शन नहीं)।`,
+    'भुगतान Razorpay के ज़रिए सुरक्षित रूप से होता है। आपका UPI PIN, कार्ड या बैंक विवरण हम कभी नहीं देखते या रखते। कोई छुपा शुल्क या सब्सक्रिप्शन नहीं।',
     `भुगतान के बाद ${CONFIG.editDays} दिन तक इसी फ़ोन पर वही बायोडाटा बदल और दोबारा डाउनलोड कर सकते हैं।`,
     'रिफ़ंड: फ़ाइल डाउनलोड न हो या ऐसी समस्या हो जो हम ठीक न कर सकें, तो 7 दिन के अंदर WhatsApp करें — पूरे पैसे वापस।',
     'कुंडली की जानकारी आपकी भरी हुई है, कृपया पंडित जी से मिलान करें। "मेरे लिए लिख दें" का लेख सुझाव है, कृपया पढ़कर बदल लें।',
@@ -47,6 +49,7 @@ const TERMS: Record<Lang, string[]> = {
   ],
   mr: [
     `बायोडाटा बनवणे आणि पाहणे मोफत आहे. अंतिम PDF आणि WhatsApp फोटो डाउनलोड करण्याचे शुल्क ₹${CONFIG.price} प्रति बायोडाटा (एकदाच, सबस्क्रिप्शन नाही).`,
+    'पेमेंट Razorpay द्वारे सुरक्षितपणे होते. तुमचा UPI PIN, कार्ड किंवा बँक तपशील आम्ही कधीही पाहत किंवा ठेवत नाही. कोणतेही छुपे शुल्क किंवा सबस्क्रिप्शन नाही.',
     `पेमेंटनंतर ${CONFIG.editDays} दिवस याच फोनवर तोच बायोडाटा बदलू आणि पुन्हा डाउनलोड करू शकता.`,
     'परतावा: फाईल डाउनलोड न झाल्यास किंवा आम्ही दूर करू शकत नाही अशी अडचण असल्यास 7 दिवसांत WhatsApp करा — पूर्ण पैसे परत.',
     'पत्रिकेची माहिती तुम्ही भरलेली आहे, कृपया गुरुजींकडून खात्री करा. "माझ्यासाठी लिहा" मधील मजकूर सूचना आहे, कृपया वाचून बदला.',

@@ -3,6 +3,7 @@ import { TrustBar } from '../components/TrustBar';
 import { useEffect, useRef, useState } from 'react';
 import { TopBar } from '../components/Header';
 import { helpLink } from '../components/Legal';
+import { PayTrust } from '../components/PayTrust';
 import { WhatYouGet } from '../components/WhatYouGet';
 import { Scaled } from '../components/Scaled';
 import { CONFIG } from '../config';
@@ -118,11 +119,8 @@ export function Preview({ doc, onLegal }: { doc: Doc; onChange: (d: Doc) => void
               <div className="pay-card">
                 <div className="price-line"><strong>₹{CONFIG.price}</strong><span>{tr(L, 'priceSub')}</span></div>
                 <button className="btn btn-primary btn-lg btn-block" disabled={busy} onClick={startPayment}><Icon name="download" />{tr(L, 'downloadCta')}</button>
+                <PayTrust lang={L} />
                 <WhatYouGet lang={L} compact />
-                <ul className="trust">
-                  <li><Icon name="lock" size={16} />{tr(L, 'securePay')}</li>
-                  <li><Icon name="check" size={16} />{tr(L, 'payTrust4')}</li>
-                </ul>
                 <p className="hint">{tr(L, 'consent')}</p>
               </div>
             </>
@@ -165,6 +163,7 @@ export function Preview({ doc, onLegal }: { doc: Doc; onChange: (d: Doc) => void
           <div className="modal" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
             <h2>{tr(L, 'demoTitle')}</h2>
             <p>{tr(L, 'demoBody')}</p>
+            <PayTrust lang={L} />
             <button className="btn btn-primary btn-block" onClick={() => onPaid(`demo_${Date.now()}`)}>{tr(L, 'demoPay')}</button>
             <button className="btn btn-ghost btn-block" onClick={() => setDemo(false)}>{tr(L, 'cancel')}</button>
           </div>
