@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { LangSwitch, TopBar } from '../components/Header';
 import { Icon } from '../components/Icon';
+import { TrustBar } from '../components/TrustBar';
 import { helpLink } from '../components/Legal';
 import { Scaled } from '../components/Scaled';
 import { BusinessLine } from '../components/WhatYouGet';
@@ -70,7 +71,7 @@ export function Landing({ lang, onLang, onLegal }: { lang: Lang; onLang: (l: Lan
               <button className="btn btn-brand btn-lg" onClick={() => go('start')}>{COPY.cta[L]} <Icon name="arrow" /></button>
               {docs[0] && <button className="btn btn-quiet btn-lg" onClick={() => go(`edit/${docs[0].id}`)}>{tr(L, 'continueDraft')}</button>}
             </div>
-            <ul className="micro">{COPY.checks.map((m) => <li key={m.en}><Icon name="check" size={16} />{m[L]}</li>)}</ul>
+            <TrustBar lang={L} pick={[0, 1, 2]} />
           </div>
 
           <div className="phone-stage" aria-hidden>
@@ -139,6 +140,7 @@ export function Landing({ lang, onLang, onLegal }: { lang: Lang; onLang: (l: Lan
         </section>
 
         <section className="final-simple">
+          <TrustBar lang={L} pick={[3, 4, 5]} tone="plain" />
           <button className="btn btn-brand btn-lg" onClick={() => go('start')}>{COPY.cta[L]} <Icon name="arrow" /></button>
           <p className="muted">{COPY.shop[L]}</p>
         </section>

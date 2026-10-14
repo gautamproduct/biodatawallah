@@ -1,4 +1,5 @@
 import { Icon } from '../components/Icon';
+import { TrustBar } from '../components/TrustBar';
 import { useRef, useState } from 'react';
 import { refreshAuto, reshape } from '../autotext';
 import { FieldRow, MicButton } from '../components/FieldRow';
@@ -56,6 +57,7 @@ export function Editor({ doc, onChange: rawChange }: { doc: Doc; onChange: (d: D
       <div className="editor-grid">
         <div className="editor-form">
           <h1 className="builder-title">{doc.heading}</h1>
+          <TrustBar lang={L} pick={[0, 5, 2]} tone="plain" />
 
           <div className="quick-chips">
             <div className="chips chips-row">
@@ -96,6 +98,7 @@ export function Editor({ doc, onChange: rawChange }: { doc: Doc; onChange: (d: D
           <p className="hint center">{tr(L, 'typingTip')}</p>
 
           <div className="builder-bar">
+            <TrustBar lang={L} pick={[4]} tone="plain" />
             <button className="btn btn-primary btn-lg btn-block" onClick={() => go(`preview/${doc.id}`)}>{tr(L, 'previewCta')} <Icon name="arrow" /></button>
           </div>
         </div>

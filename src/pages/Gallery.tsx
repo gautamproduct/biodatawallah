@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { LangSwitch, TopBar } from '../components/Header';
 import { Scaled } from '../components/Scaled';
+import { TrustBar } from '../components/TrustBar';
 import { go } from '../nav';
 import { sampleDoc } from '../samples';
 import { Biodata, PAGE_H, PAGE_W } from '../templates/Biodata';
@@ -18,7 +19,8 @@ export function Gallery({ lang, onLang }: { lang: Lang; onLang: (l: Lang) => voi
   return (
     <div className="page">
       <TopBar><LangSwitch lang={lang} onLang={onLang} /></TopBar>
-      <h1 className="section-title" style={{ marginTop: 12 }}>{TITLE[lang]}</h1>
+      <h1 className="section-title" style={{ marginTop: 24 }}>{TITLE[lang]}</h1>
+      <div style={{ marginBottom: 20 }}><TrustBar lang={lang} pick={[2, 0, 4]} tone="plain" /></div>
       <div className="gallery-grid">
         {docs.map(({ t, d }) => (
           <button key={t.id} className="gallery-item" onClick={() => go(`start/${d.purpose}`)}>

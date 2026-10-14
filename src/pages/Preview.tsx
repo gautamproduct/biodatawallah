@@ -1,4 +1,5 @@
 import { Icon } from '../components/Icon';
+import { TrustBar } from '../components/TrustBar';
 import { useEffect, useRef, useState } from 'react';
 import { TopBar } from '../components/Header';
 import { helpLink } from '../components/Legal';
@@ -99,6 +100,7 @@ export function Preview({ doc, onLegal }: { doc: Doc; onChange: (d: Doc) => void
             <button role="tab" aria-selected={tab === 'page'} className={tab === 'page' ? 'on' : ''} onClick={() => setTab('page')}><Icon name="file" size={18} />{tr(L, 'tabPage')}</button>
             <button role="tab" aria-selected={tab === 'card'} className={tab === 'card' ? 'on' : ''} onClick={() => setTab('card')}><Icon name="chat" size={18} />{tr(L, 'tabCard')}</button>
           </div>
+          <TrustBar lang={L} pick={[0, 5, 1]} tone="plain" />
           <div className="paper-shadow">
             {tab === 'page'
               ? <Scaled width={PAGE_W} height={PAGE_H}><Biodata doc={doc} watermark={!unlock} /></Scaled>

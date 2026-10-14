@@ -357,3 +357,18 @@ img { max-width: 100%; }
 @media (max-width: 859px) { .steps.simple { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; } .steps.simple li { padding: 16px 6px; } .steps.simple p { font-size: 15px; } .step-ic { width: 46px; height: 46px; } }
 .final-simple { text-align: center; padding: 72px 0 8px; display: grid; justify-items: center; gap: 10px; }
 .section-head h2.section-title { font-size: clamp(26px, 3.6vw, 40px); }
+
+/* Trust badges */
+.trustbar { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.trustbar li { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #145c39; background: var(--good-tint); border-radius: 999px; padding: 6px 12px; }
+.trustbar li .icon { color: var(--good); }
+.trustbar-plain { margin: 0 0 12px; }
+.trustbar-plain li { background: #fff; color: var(--ink-2); border: 1px solid var(--line); }
+.final-simple .trustbar { justify-content: center; margin-bottom: 6px; }
+.builder-bar .trustbar { justify-content: center; margin-bottom: 10px; }
+.builder-bar .trustbar li { background: rgba(255, 255, 255, .9); }
+.preview-doc .trustbar { justify-content: center; }
+.trustbar-plain { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 2px; }
+.trustbar-plain::-webkit-scrollbar { display: none; }
+.trustbar-plain li { flex: none; font-size: 13.5px; padding: 5px 11px; }
+@media (max-width: 560px) { .trustbar:not(.trustbar-plain) li { font-size: 13.5px; padding: 5px 11px; } }
