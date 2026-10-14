@@ -418,3 +418,12 @@ img { max-width: 100%; }
 .pt-ic-2 { background: linear-gradient(135deg, #f472b6, #e5336b); }
 .payassure { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px 5px 6px; color: var(--ink-2); font-weight: 600; box-shadow: 0 2px 8px rgba(14, 14, 18, .05); }
 .payassure .icon { color: #fff; background: linear-gradient(135deg, #22c55e, #059669); border-radius: 999px; padding: 4px; width: 22px; height: 22px; box-sizing: border-box; }
+.pay-apps { align-items: center; }
+.pay-apps .app-logo { background: #fff; border: 1px solid #dfeee6; border-radius: 10px; height: 34px; min-width: 46px; padding: 0 8px; display: inline-grid; place-items: center; }
+.pay-apps .app-upi { background: #fff; border: 1px solid #dfeee6; border-radius: 10px; height: 34px; padding: 0 10px; display: inline-grid; place-items: center; color: #097939; }
+.pay-apps .app-upi b { font: 800 italic 15px/1 var(--font); background: linear-gradient(90deg, #ed752e 0 50%, #097939 50%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.pt-razor { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #33415c; }
+.pt-razor b { color: #0c2451; }
+.pay-apps { gap: 5px; flex-wrap: nowrap; }
+.pay-apps .app-logo { min-width: 0; flex: 1; padding: 0 4px; height: 32px; }
+.pay-apps .app-upi { flex: 1; padding: 0 4px; height: 32px; }
