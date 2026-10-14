@@ -18,14 +18,9 @@ interface Look { bg1: string; bg2: string; skin: string; hair: string; outfit: s
 type Style = 'long' | 'bun' | 'dupatta' | 'quiff' | 'beard';
 type Wear = 'saree' | 'suit' | 'nehru' | 'blazer' | 'shirt';
 
-/** A clean blank photo placeholder: soft background and a simple silhouette, no face. */
+/** A plain, blank photo area for examples. */
 function placeholder(l: Look): string {
-  return 'data:image/svg+xml;utf8,' + encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${l.bg1}"/><stop offset="1" stop-color="${l.bg2}"/></linearGradient></defs>` +
-    `<rect width="400" height="500" fill="url(#g)"/>` +
-    `<circle cx="200" cy="190" r="70" fill="#fff" fill-opacity=".7"/>` +
-    `<path d="M70 500c6-112 60-178 130-178s124 66 130 178z" fill="#fff" fill-opacity=".7"/></svg>`,
-  );
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><rect width="400" height="500" fill="${l.bg1}"/></svg>`);
 }
 
 interface Persona {
