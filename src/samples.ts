@@ -4,6 +4,16 @@ import { newDoc } from './presets';
 import type { Community, Doc, Gender, Lang, Purpose } from './types';
 import { writeAbout, writeDeclaration, writeExpectations, writeObjective } from './writer';
 
+// Real-looking AI portraits dropped into src/assets/samples (girl-1.jpg … boy-4.jpg) replace the illustrations.
+const PHOTO_FILES = import.meta.glob('./assets/samples/*.{jpg,jpeg,png,webp}', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
+function samplePhoto(kind: 'girl' | 'boy', n: number): string | null {
+  for (const ext of ['jpg', 'jpeg', 'png', 'webp']) {
+    const url = PHOTO_FILES[`./assets/samples/${kind}-${n}.${ext}`];
+    if (url) return url;
+  }
+  return null;
+}
+
 interface Look { bg1: string; bg2: string; skin: string; hair: string; outfit: string; trim: string }
 
 /** A flat illustrated portrait (girl or boy) as an SVG data URL. */
@@ -40,13 +50,13 @@ function portrait(g: Gender, l: Look): string {
 }
 
 interface Persona {
-  lang: Lang; community: Community; gender: Gender; look: Look;
+  lang: Lang; community: Community; gender: Gender; look: Look; n: number;
   values: Record<string, string>; traits: string[]; hobbies: string;
 }
 
 const PERSONAS: Persona[] = [
   {
-    lang: 'hi', community: 'hindu', gender: 'female',
+    lang: 'hi', community: 'hindu', gender: 'female', n: 1,
     look: { bg1: '#f1dfd3', bg2: '#d9b3a3', skin: '#c98f6e', hair: '#2a1b17', outfit: '#9c3d54', trim: '#d4a64a' },
     values: {
       fullName: 'प्रिया रमेश शर्मा', dob: '1999-03-12', birthTime: '06:45', birthPlace: 'इंदौर', height: "5'4", bloodGroup: 'B+', diet: 'veg',
@@ -58,7 +68,7 @@ const PERSONAS: Persona[] = [
     traits: ['cultured', 'understanding', 'familyoriented', 'cheerful'], hobbies: 'संगीत और खाना बनाने',
   },
   {
-    lang: 'mr', community: 'hindu', gender: 'male',
+    lang: 'mr', community: 'hindu', gender: 'male', n: 1,
     look: { bg1: '#dfe7e0', bg2: '#a9bfae', skin: '#b97c5a', hair: '#1f1714', outfit: '#3f5a46', trim: '#c9a35a' },
     values: {
       fullName: 'रोहन सुनील देशमुख', dob: '1996-08-21', birthTime: '10:20', birthPlace: 'पुणे', height: "5'10", bloodGroup: 'O+', diet: 'veg',
@@ -71,7 +81,7 @@ const PERSONAS: Persona[] = [
     traits: ['hardworking', 'understanding', 'familyoriented', 'honest'], hobbies: 'क्रिकेट आणि प्रवास',
   },
   {
-    lang: 'en', community: 'jain', gender: 'male',
+    lang: 'en', community: 'jain', gender: 'male', n: 2,
     look: { bg1: '#e6e2f0', bg2: '#b6aecb', skin: '#c48b68', hair: '#221815', outfit: '#1f2e4d', trim: '#c2a160' },
     values: {
       fullName: 'Rahul Anil Mehta', dob: '1996-11-02', birthTime: '18:10', birthPlace: 'Ahmedabad', height: "5'10", diet: 'jainfood',
@@ -83,7 +93,7 @@ const PERSONAS: Persona[] = [
     traits: ['cheerful', 'familyoriented', 'ambitious', 'honest'], hobbies: 'cricket and travelling',
   },
   {
-    lang: 'en', community: 'muslim', gender: 'female',
+    lang: 'en', community: 'muslim', gender: 'female', n: 2,
     look: { bg1: '#e3eee8', bg2: '#a8c7b8', skin: '#c99272', hair: '#24170f', outfit: '#145a45', trim: '#e3c27a' },
     values: {
       fullName: 'Sana Imran Qureshi', dob: '1998-06-05', birthPlace: 'Lucknow', height: "5'3", maritalStatus: 'never', religion: 'Islam',
@@ -94,7 +104,7 @@ const PERSONAS: Persona[] = [
     traits: ['understanding', 'independent', 'caring', 'modern'], hobbies: 'reading and calligraphy',
   },
   {
-    lang: 'hi', community: 'hindu', gender: 'male',
+    lang: 'hi', community: 'hindu', gender: 'male', n: 3,
     look: { bg1: '#f0e3d2', bg2: '#d5b48c', skin: '#b47a58', hair: '#1c1411', outfit: '#7a1f2e', trim: '#c2a160' },
     values: {
       fullName: 'अंकित विजय वर्मा', dob: '1995-01-18', birthTime: '04:30', birthPlace: 'जयपुर', height: "5'9", bloodGroup: 'A+', diet: 'veg',
@@ -106,7 +116,7 @@ const PERSONAS: Persona[] = [
     traits: ['cultured', 'hardworking', 'religious', 'caring'], hobbies: 'योग और पढ़ने',
   },
   {
-    lang: 'mr', community: 'hindu', gender: 'female',
+    lang: 'mr', community: 'hindu', gender: 'female', n: 3,
     look: { bg1: '#f6e3e6', bg2: '#dcaab4', skin: '#cf9877', hair: '#2b1c18', outfit: '#5b2c5e', trim: '#d8b06a' },
     values: {
       fullName: 'स्नेहा विजय कुलकर्णी', dob: '1998-08-21', birthTime: '10:20', birthPlace: 'नाशिक', height: "5'3", bloodGroup: 'O+', diet: 'veg',
@@ -121,7 +131,7 @@ const PERSONAS: Persona[] = [
 
 const JOB_PERSONAS = [
   {
-    gender: 'male' as Gender,
+    gender: 'male' as Gender, n: 4,
     look: { bg1: '#dfe7f0', bg2: '#a7bbd0', skin: '#b87d5b', hair: '#1d1512', outfit: '#24577f', trim: '#f2f2f2' },
     v: { fullName: 'Amit Kumar Verma', fatherName: 'Shri Suresh Verma', dob: '2001-05-15', maritalStatus: 'never', languages: 'Hindi, English', phone: '98XXXXXX31', email: 'amit.verma@email.com', address: 'Lucknow, Uttar Pradesh' },
     body: {
@@ -131,7 +141,7 @@ const JOB_PERSONAS = [
     },
   },
   {
-    gender: 'female' as Gender,
+    gender: 'female' as Gender, n: 4,
     look: { bg1: '#ece6f3', bg2: '#bfb1d4', skin: '#c99272', hair: '#24170f', outfit: '#2a2d32', trim: '#ffffff' },
     v: { fullName: 'Neha Ramesh Patil', fatherName: 'Shri Ramesh Patil', dob: '2000-09-09', maritalStatus: 'never', languages: 'Marathi, Hindi, English', phone: '97XXXXXX84', email: 'neha.patil@email.com', address: 'Nagpur, Maharashtra' },
     body: {
@@ -158,7 +168,7 @@ export function sampleDoc(lang: Lang, template: string, purpose: Purpose = 'marr
     for (const s of d.sections) if (s.key && s.key in p.body) s.body = p.body[s.key as keyof typeof p.body];
     const obj = d.sections.find((s) => s.key === 'objective'); if (obj) obj.body = writeObjective(d);
     const dec = d.sections.find((s) => s.key === 'declaration'); if (dec) dec.body = writeDeclaration(d);
-    d.photo = portrait(p.gender, p.look);
+    d.photo = samplePhoto(p.gender === 'female' ? 'girl' : 'boy', p.n) ?? portrait(p.gender, p.look);
     return d;
   }
   const pool = pick === undefined ? PERSONAS.filter((x) => x.lang === lang) : PERSONAS;
@@ -171,6 +181,6 @@ export function sampleDoc(lang: Lang, template: string, purpose: Purpose = 'marr
   d.hobbies = p.hobbies;
   const about = d.sections.find((s) => s.key === 'about'); if (about) about.body = writeAbout(d);
   const exp = d.sections.find((s) => s.key === 'expectations'); if (exp) exp.body = writeExpectations(d);
-  d.photo = portrait(p.gender, p.look);
+  d.photo = samplePhoto(p.gender === 'female' ? 'girl' : 'boy', p.n) ?? portrait(p.gender, p.look);
   return d;
 }
