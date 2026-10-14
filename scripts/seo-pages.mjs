@@ -182,7 +182,7 @@ p{color:#3c3c46}
 .cta.small{padding:9px 16px;font-size:15px;box-shadow:none;margin:0}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px;padding:0;list-style:none}
 .chips li{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #e8e8ee;border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600;box-shadow:0 2px 8px rgba(14,14,18,.05)}
-.chips li i{width:18px;height:18px;border-radius:999px;display:inline-block;background:linear-gradient(135deg,#22c55e,#059669)}
+.chips li i{width:18px;height:18px;border-radius:999px;display:inline-grid;place-items:center;background:linear-gradient(135deg,#22c55e,#059669);font-style:normal;color:#fff;font-size:11px;font-weight:800}.chips li i::after{content:"✓"}
 ul.list{padding-left:20px}ul.list li{margin:8px 0;color:#3c3c46}
 .note{background:#f5f5f7;border-radius:16px;padding:14px 16px;color:#3c3c46}
 details{border-bottom:1px solid #e8e8ee}summary{cursor:pointer;font-weight:600;padding:16px 0;list-style:none}summary::-webkit-details-marker{display:none}details p{margin:0 0 16px}
